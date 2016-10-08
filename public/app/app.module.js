@@ -6,7 +6,7 @@ var app = angular.module('LehoivietAdmin', ['ui.router', 'datatables', 'chart.js
 
 app.factory('ConfigService', [function() {
     return {
-        host: 'http://127.0.0.1:3000/api'
+        host: 'http://lehoiviet.herokuapp.com/api'
     };
 }]);
 
