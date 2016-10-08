@@ -1,0 +1,112 @@
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-danger">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Edit </h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="box-body">
+                            <div class="col-md-6">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input class="form-control" type="text" ng-model="title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Type</label>
+                                        <select id="select2" class="form-control" ng-model="typeEvent">
+                                            <option value="{{category._id}}" ng-repeat="category in allCategories">{{category.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <select class="form-control" ng-model="city">
+                                            <option ng-repeat="province in allProvinces">{{province.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>District</label>
+                                        <input class="form-control" type="text" ng-model="district ">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Address detail</label>
+                                        <textarea class="form-control" type="text" ng-model="mainAddress"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea rows="2" class="form-control" type="text" ng-model="description"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Content</label>
+                                        <textarea rows="8" class="form-control" type="text" ng-model="content"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>Date Begin</label>
+                                        <div class="form-group">
+                                            <div class='input-group date' id='datetimepicker1'>
+                                                <input id="timebegin" type='text' class="form-control" ng-model="timebegin" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Date End</label>
+                                        <div class="form-group">
+                                            <div class='input-group date' id='datetimepicker2'>
+                                                <input id="timeend" type='text' class="form-control" ng-model="timeend" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label>Price</label>
+                                        <input class="form-control " type="number " ng-model="priceTicket ">
+                                    </div>
+                                    <div class="form-group ">
+                                        <label>Hotline</label>
+                                        <input class="form-control " type="number " ng-model="phoneNumber ">
+                                    </div>
+                                    <div class="form-group ">
+                                        <label>Website</label>
+                                        <input class="form-control " type="text " ng-model="website ">
+                                    </div>
+                                    <div class="form-group ">
+                                        <label>Email</label>
+                                        <input class="form-control " type="email " ng-model="emailAddress ">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Thumbnail (1 image)</label>
+                                        <div class="thumbnail-box">
+                                            <div class="thumnail">
+                                                <img class="img-responsive" ng-show="myForm.file.$valid" ngf-thumbnail="thumbnail">
+                                            </div>
+                                            <button class="btn btn-danger" ng-click="thumbnail = null" ng-show="thumbnail">Remove</button>
+                                            <input class="form-control" type="file" ngf-select ng-model="thumbnail" name="file" accept="image/*" ngf-max-size="2MB" ngf-model-invalid="errorFile">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="alert alert-warning" ng-show="isShowErr">
+                                        <strong>Warning!</strong> Please type full information.
+                                    </div>
+                                    <div class="pull-right ">
+                                        <button class="btn btn-primary " ng-click="updateFestival(thumbnail) "><i class="fa fa-floppy-o " aria-hidden="true "></i> Save </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

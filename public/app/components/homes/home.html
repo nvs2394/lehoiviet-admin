@@ -1,0 +1,170 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+        Dashboard
+        <small>Version 1.0</small>
+      </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>{{totalFestival}}</h3>
+                        <p>Festival</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-speakerphone"></i>
+                    </div>
+                    <a href="/admin/#/festival" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>{{totalBlog}}</h3>
+                        <p>Blog</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-ios-compose-outline"></i>
+                    </div>
+                    <a href="/admin/#/blog" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>{{totalCommentPost}}</h3>
+                        <p>Comments</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-chatbubble-working"></i>
+                    </div>
+                    <a href="/admin/#/comment" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>{{totalUser}}</h3>
+                        <p>Users</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                    <a href="/admin/#/user" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Festival is Pending</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-hover" datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance"></table>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Pined Festival</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-hover" datatable="" dt-options="dtOptionsPinPost" dt-columns="dtColumnsPinPost" dt-instance="dtInstancePinPost"></table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="info-box bg-yellow">
+                    <span class="info-box-icon"><i class="ion ion-ios-videocam"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Video</span>
+                        <span class="info-box-number">{{totalVideos}}</span>
+                        <span class="progress-description">
+                    Total video all posts
+                  </span>
+                    </div>
+                </div>
+                <div class="info-box bg-green">
+                    <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Like Post</span>
+                        <span class="info-box-number">{{totalLikePost}}</span>
+                        <span class="progress-description">
+                    Total like all posts
+                  </span>
+                    </div>
+                </div>
+                <div class="box box-danger">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Top Members</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body no-padding">
+                        <ul class="users-list clearfix">
+                            <li ng-repeat="member in topMembers">
+                                <img ng-src="{{member.avatar}}" alt="User Image">
+                                <a class="users-list-name" ui-sref="home.profile({userId:{{member._id}}})">{{member.lastName}} {{member.firstName}}</a>
+                                <span class="users-list-date">{{member.statistic.countpost}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="box-footer text-center">
+                        <a href="/admin/#/user" class="uppercase">View All Users</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ask when you want to public a festival -->
+    <div class="modal fade" id="askPublic" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Public Festival</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="isPublic()">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="askPinPost" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Pin Festival</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="isPinned()">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
