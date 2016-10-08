@@ -20,7 +20,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: '/login',
             views: {
                 'login': {
-                    templateUrl: '/app/components/logins/login.html',
+                    templateUrl: 'public/app/components/logins/login.html',
                     controller: 'loginCtrl'
                 }
             },
@@ -30,7 +30,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: '/forgotpassword',
             views: {
                 'login@': {
-                    templateUrl: '/app/components/logins/forgotpassword.html',
+                    templateUrl: 'public/app/components/logins/forgotpassword.html',
                     controller: 'forgotpasswordCtrl'
                 }
             },
@@ -40,27 +40,27 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: '/',
             views: {
                 'header@': {
-                    templateUrl: '/app/shared/header.html',
+                    templateUrl: 'public/app/shared/header.html',
                     controller: 'HeaderController'
                 },
                 'leftmenu@': {
-                    templateUrl: '/app/shared/leftmenu.html',
+                    templateUrl: 'public/app/shared/leftmenu.html',
                     controller: 'leftMenuController'
                 },
                 'content@': {
-                    templateUrl: '/app/components/homes/home.html',
+                    templateUrl: 'public/app/components/homes/home.html',
                     controller: 'homeCtrl'
                 },
                 'footer@': {
-                    templateUrl: '/app/shared/footer.html',
+                    templateUrl: 'public/app/shared/footer.html',
                     controller: 'FooterController'
                 },
                 'aside@': {
-                    templateUrl: '/app/shared/aside.html',
+                    templateUrl: 'public/app/shared/aside.html',
                     controller: 'AsideController'
                 },
                 'control-sidebar@': {
-                    templateUrl: '/app/shared/control-sidebar.html',
+                    templateUrl: 'public/app/shared/control-sidebar.html',
                     controller: 'Control-sidebarController'
                 }
             }
@@ -70,7 +70,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: 'home',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/homes/home.html',
+                    templateUrl: 'public/app/components/homes/home.html',
                     controller: 'homeCtrl'
                 }
             }
@@ -79,7 +79,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: 'profile/:userId',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/profile/profile.html',
+                    templateUrl: 'public/app/components/profile/profile.html',
                     controller: 'profileCtrl'
                 }
             }
@@ -88,7 +88,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: '/change-password',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/profile/changepassword.html',
+                    templateUrl: 'public/app/components/profile/changepassword.html',
                     controller: 'profileCtrl'
                 }
             }
@@ -97,7 +97,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: 'user',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/users/user.html',
+                    templateUrl: 'public/app/components/users/user.html',
                     controller: 'userCtrl'
                 }
             }
@@ -106,7 +106,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: '/new',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/users/usernew.html',
+                    templateUrl: 'public/app/components/users/usernew.html',
                     controller: 'userNewCtrl'
                 }
             }
@@ -115,7 +115,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: '/edit/:userId',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/users/useredit.html',
+                    templateUrl: 'public/app/components/users/useredit.html',
                     controller: 'userEditCtrl'
                 }
             }
@@ -124,7 +124,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: 'festival',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/festivals/festival.html',
+                    templateUrl: 'public/app/components/festivals/festival.html',
                     controller: 'festivalCtrl'
                 }
             }
@@ -133,7 +133,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: '/new',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/festivals/newfestival.html',
+                    templateUrl: 'public/app/components/festivals/newfestival.html',
                     controller: 'newFestivalCtrl'
                 }
             }
@@ -142,7 +142,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: '/edit/:festivalId',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/festivals/editFestival.html',
+                    templateUrl: 'public/app/components/festivals/editFestival.html',
                     controller: 'editFestivalCtrl'
                 }
             }
@@ -151,7 +151,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: '/:festivalId',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/festivals/detailFestival.html',
+                    templateUrl: 'public/app/components/festivals/detailFestival.html',
                     controller: 'detailFestivalCtrl'
                 }
             }
@@ -160,7 +160,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: 'blog',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/blogs/blog.html',
+                    templateUrl: 'public/app/components/blogs/blog.html',
                     controller: 'blogCtrl'
                 }
             }
@@ -169,7 +169,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: 'comment',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/comments/comment.html',
+                    templateUrl: 'public/app/components/comments/comment.html',
                     controller: 'commentCtrl'
                 }
             }
@@ -178,7 +178,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: 'gallery',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/gallerys/gallery.html',
+                    templateUrl: 'public/app/components/gallerys/gallery.html',
                     controller: 'galleryCtrl'
                 }
             }
@@ -187,7 +187,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: 'statictis',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/statictis/statictis.html',
+                    templateUrl: 'public/app/components/statictis/statictis.html',
                     controller: 'statictisCtrl'
                 }
             }
@@ -196,7 +196,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             url: 'config',
             views: {
                 'content@': {
-                    templateUrl: '/app/components/configs/config.html',
+                    templateUrl: 'public/app/components/configs/config.html',
                     controller: 'configCtrl'
                 }
             }
