@@ -1,25 +1,30 @@
 'use strict';
-app.controller('forgotpasswordCtrl', ['$scope', '$rootScope', '$http', '$state', '$window', 'loginService',
-    '$cookies', 'ConfigService',
-    function($scope, $rootScope, $http, $state, $window, loginService, $cookies, ConfigService) {
-        $scope.rememberEmail = false;
-        $scope.success = false;
+app.controller('forgotpasswordCtrl', ['$scope', '$http', 'ConfigService',
+    function($scope, $http, ConfigService) {
         var host = ConfigService.host;
         $scope.emailPasswd = function() {
             var data = {};
             data.email = $scope.email;
-            if ($scope.email != undefined) {
+            if ($scope.email != undefined && $scope.email != '') {
                 $http({
                     method: "POST",
-                    url: host + '/users/forgotPassword',
+                    url: host + '/user/password/forgot',
                     data: data
                 }).then(function successCallback(response) {
                     $scope.rememberEmail = false;
-                    $scope.success = true;
+                    console.log(response.data.data.code);
+                    if (response.data.data.code == 0) {
+                        $scope.errFalse = true;
+                        $scope.success = false;
+                    } else {
+                        $scope.errFalse = false;
+                        $scope.success = true;
+                    }
                 }, function errorCallback(response) {});
             } else {
-                $scope.rememberEmail = true;
+                $scope.errFalse = false;
                 $scope.success = false;
+                $scope.rememberEmail = true;
             }
 
         };

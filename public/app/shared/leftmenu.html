@@ -2,7 +2,7 @@
     <section class="sidebar" data-ng-init="getCurrentUser()">
         <div class="user-panel">
             <div class="pull-left image">
-                <img ng-src="..{{loggedUser.avatar}}" class="img-circle" alt="User Image">
+                <img ng-src="http://lehoiviet.herokuapp.com/{{loggedUser.avatar}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <div class="dropdown user user-menu">
@@ -40,10 +40,10 @@
                 <a ui-sref="home.comment" ui-sref-opts="{reload: true}">
                     <i class="fa fa-comment-o"></i> <span>Comment</span></a>
             </li>
-            <li ui-sref-active="active">
+           <!--  <li ui-sref-active="active">
                 <a ui-sref="home.gallery" ui-sref-opts="{reload: true}">
                     <i class="fa fa-picture-o"></i> <span>Gallery</span></a>
-            </li>
+            </li> -->
             <li ui-sref-active="active">
                 <a ui-sref="home.statictis" ui-sref-opts="{reload: true}">
                     <i class="fa fa-area-chart"></i> <span>Statictis</span>

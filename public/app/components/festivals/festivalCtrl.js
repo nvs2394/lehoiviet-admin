@@ -1,6 +1,6 @@
 "use strict";
-app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuilder', '$compile', 'ConfigService',
-    '$filter', '$state', '$timeout',
+app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuilder', '$compile',
+    '$filter', '$state', '$timeout', 'ConfigService',
     function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, $state, $timeout, ConfigService) {
 
         var host = ConfigService.host;

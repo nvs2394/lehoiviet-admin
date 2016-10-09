@@ -1,8 +1,7 @@
 "use strict";
 app.controller('statictisCtrl', ['$scope', '$http', 'ConfigService', function($scope, $http, ConfigService) {
+    var host = ConfigService.host;
     $scope.chartFestival = function() {
-        var host = ConfigService.host;
-
         $http.get(host + '/festival/count/bydate').then(function success(response) {
             var data = [];
             var labels = [];
@@ -14,7 +13,7 @@ app.controller('statictisCtrl', ['$scope', '$http', 'ConfigService', function($s
             $scope.series = ['Posted'];
             $scope.data = [data];
             $scope.onClick = function(points, evt) {
-                console.log(points, evt);
+                //console.log(points, evt);
             };
         });
     }
@@ -31,7 +30,7 @@ app.controller('statictisCtrl', ['$scope', '$http', 'ConfigService', function($s
             $scope.seriesUser = ['User Created'];
             $scope.dataUser = [data];
             $scope.onClick = function(points, evt) {
-                console.log(points, evt);
+                //console.log(points, evt);
             };
         });
     }
@@ -48,7 +47,7 @@ app.controller('statictisCtrl', ['$scope', '$http', 'ConfigService', function($s
             $scope.seriesComment = ['Comment Created'];
             $scope.dataComment = [data];
             $scope.onClick = function(points, evt) {
-                console.log(points, evt);
+                //console.log(points, evt);
             };
         });
     }
@@ -65,11 +64,9 @@ app.controller('statictisCtrl', ['$scope', '$http', 'ConfigService', function($s
             $scope.seriesBlog = ['Blog Created'];
             $scope.dataBlog = [data];
             $scope.onClick = function(points, evt) {
-                console.log(points, evt);
+                //console.log(points, evt);
             };
         });
     }
-
-
 
 }]);

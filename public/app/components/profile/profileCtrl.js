@@ -1,6 +1,6 @@
 "use strict";
-app.controller('profileCtrl', ['$scope', '$http', '$state', 'Notification', 'ConfigService',
- function($scope, $http, $state, Notification, ConfigService) {
+app.controller('profileCtrl', ['$scope', '$http', '$state', 'Notification', 'ConfigService','$timeout',
+ function($scope, $http, $state, Notification, ConfigService,$timeout) {
     var host = ConfigService.host;
 
     var userId = $state.params.userId;
@@ -63,7 +63,9 @@ app.controller('profileCtrl', ['$scope', '$http', '$state', 'Notification', 'Con
                 Notification({ message: 'Old password invalid', title: 'False' }, 'warning');
             } else {
                 Notification({ message: 'Change password successfully', title: 'Success' });
-                $state.go('home.profile.changepassword');
+                $timeout(function(){
+                    $state.go('login');
+                },2000)
             }
         }, function errorCallback(response) {
 

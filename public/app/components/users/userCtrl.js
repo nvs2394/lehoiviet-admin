@@ -1,7 +1,8 @@
 "use strict";
-app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuilder', '$compile', '$filter', '$state', 'ConfigService',
+app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuilder', '$compile', '$filter', '$state',
+    'ConfigService', 'Notification',
 
-    function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, $state, ConfigService) {
+    function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, $state, ConfigService, Notification) {
         var host = ConfigService.host;
 
         $scope.getAllRole = function() {
@@ -82,10 +83,15 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                     method: "DELETE",
                     url: host + '/user/delete/' + userId
                 }).then(function successCallback(response) {
-                    $scope.dtInstance.reloadData();
-                    $scope.countTotalUser();
-                    $scope.getAdmin();
-                    $scope.getUserInactive();
+                    if (response.data.data.code == 0) {
+                        Notification({ message: 'Can not remove admin', title: 'Warning' }, 'warning');
+                    } else {
+                        Notification({ message: 'Deleted', title: 'Success' });
+                        $scope.dtInstance.reloadData();
+                        $scope.countTotalUser();
+                        $scope.getAdmin();
+                        $scope.getUserInactive();
+                    }
                 }, function errorCallback(response) {
 
                 });

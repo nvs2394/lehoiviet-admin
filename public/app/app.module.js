@@ -6,10 +6,13 @@ var app = angular.module('LehoivietAdmin', ['ui.router', 'datatables', 'chart.js
 
 app.factory('ConfigService', [function() {
     return {
-        host: 'http://lehoiviet.herokuapp.com/api'
+        //host: 'http://lehoiviet.herokuapp.com/api',
+        host: 'http://localhost:3000/api',
+        hostImage:'http://localhost:3000'
+        //hostImage:'http://lehoiviet.herokuapp.com'
+
     };
 }]);
-
 
 
 app.config(['ChartJsProvider', function(ChartJsProvider) {
