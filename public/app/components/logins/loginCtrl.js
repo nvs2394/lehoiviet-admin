@@ -6,7 +6,7 @@ app.controller('loginCtrl', ['$scope', '$rootScope', '$http', '$state', '$window
         var email = $scope.email;
         var password = $scope.password;
         var objUser = { "email": email, "password": password };
-        if (email != undefined && password != undefined) {
+        if (email != undefined && password != undefined && email != '' && password != '') {
             var promise = loginService.login(objUser);
             promise.then(function(data) {
                 if (data != undefined) {
