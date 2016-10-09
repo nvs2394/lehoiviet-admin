@@ -143,10 +143,10 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
                     url: host + "/event/delete/" + id,
                     data: event
                 }).then(function successCallback(response) {
-                    $http.get(host + '/event/list/' + response.data.data.festivalId).then(function successCallback(response) {
+                    $http.get(host + '/event/list/' + festivalId).then(function successCallback(response) {
                         $scope.events = response.data.data;
+                        Notification({ message: 'Deleted', title: 'Successfully' }, 'Success');
                     })
-                    Notification({ message: 'Deleted', title: 'Successfully' }, 'Success');
                 }, function errorCallback(response) {});
             }
         }

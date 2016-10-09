@@ -19,7 +19,6 @@ app.controller('detailFestivalCtrl', ['$scope', '$http', '$state', '$timeout', '
             method: "GET",
             url: host + '/festival/show/' + festivalId
         }).then(function successCallback(response) {
-            console.log(response);
             var data = response.data.data;
             $scope.title = data.title;
             $scope.description = data.description;
