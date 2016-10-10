@@ -4,6 +4,7 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
         var host = ConfigService.host;
         var hostImage = ConfigService.hostImage;
         var festivalId = $state.params.festivalId;
+        $scope.thumbnailResize = '';
         $timeout(function() {
             $("#datetimepicker1").datetimepicker();
             $("#datetimepicker2").datetimepicker();
@@ -36,7 +37,8 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
             $scope.typeEvent = data.typeEvent._id.toString();
             $scope.time = data.timeBegin;
             $scope.mainAddress = data.address.mainAddress;
-            $scope.thumbnail = hostImage + data.thumbnail.resize;
+            $scope.thumbnail = hostImage + data.thumbnail.full;
+            $scope.thumbnailResize = data.thumbnail.resize;
             $scope.district = data.address.district;
             var timebegin = new Date(data.timeBegin);
             var timeend = new Date(data.timeEnd);
@@ -53,40 +55,45 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
 
         $scope.updateFestival = function(thumbnail) {
             var content = {};
-            var inputTimeBegin = $('#timebegin').val();
-            var inputTimeEnd = $('#timeend').val();
-            var timebegin = new Date(inputTimeBegin);
-            var timeend = new Date(inputTimeEnd);
-            content.title = $scope.title;
-            content.description = $scope.description;
-            content.content = $scope.content;
-            content.website = $scope.website;
-            content.emailAddress = $scope.emailAddress;
-            content.phoneNumber = $scope.phoneNumber;
-            content.typeEvent = $scope.typeEvent;
-            content.mainAddress = $scope.mainAddress;
-            content.city = $scope.city;
-            content.district = $scope.district;
-            content.priceTicket = $scope.priceTicket;
-            content.timeBegin = timebegin.toISOString();
-            content.timeEnd = timeend.toISOString();
-            if (typeof(thumbnail) != 'string') {
-                thumbnail.upload = Upload.upload({
-                    url: host + '/image/thumbnail/festival/' + festivalId,
-                    data: { file: thumbnail },
-                });
+            var inputTimeBegin = $('#timebeginUpdate').val();
+            var inputTimeEnd = $('#timeendUpdate').val();
+            if (inputTimeBegin < inputTimeEnd) {
+                if (true) {
+                    content.title = $scope.title;
+                    content.description = $scope.description;
+                    content.content = $scope.content;
+                    content.website = $scope.website;
+                    content.emailAddress = $scope.emailAddress;
+                    content.phoneNumber = $scope.phoneNumber;
+                    content.typeEvent = $scope.typeEvent;
+                    content.mainAddress = $scope.mainAddress;
+                    content.city = $scope.city;
+                    content.district = $scope.district;
+                    content.priceTicket = $scope.priceTicket;
+                    content.timeBegin = inputTimeBegin;
+                    content.timeEnd = inputTimeEnd;
+                    if (typeof(thumbnail) != 'string') {
+                        thumbnail.upload = Upload.upload({
+                            url: host + '/image/upload/thumbnail/festival',
+                            data: { file: thumbnail },
+                        });
 
-                thumbnail.upload.then(function(response) {
-                    content.thumbnailFull = response.data.data.imgName;
-                    content.thumbnailResize = response.data.data.imgResize;
-                    updateData(festivalId, content);
-                }, function(response) {
-                    if (response.status > 0)
-                        $scope.errMessage = true;
-                }, function(evt) {});
+                        thumbnail.upload.then(function(response) {
+                            content.thumbnailFull = response.data.data.imgName;
+                            content.thumbnailResize = response.data.data.imgResize;
+                            updateData(festivalId, content);
+                        }, function(response) {
+                            if (response.status > 0)
+                                $scope.errMessage = true;
+                        }, function(evt) {});
+                    } else {
+                        content.thumbnailFull = $scope.thumbnail;
+                        content.thumbnailResize = $scope.thumbnailResize;
+                        updateData(festivalId, content);
+                    }
+                }
             } else {
-                content.thumbnail = $scope.thumbnail;
-                updateData(festivalId, content);
+                Notification({ message: 'Timebegin greater than Timeend ', title: 'Warning' }, 'warning');
             }
         }
 
@@ -96,10 +103,17 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
                 url: host + "/festival/updatebyadmin/" + festivalId,
                 data: data
             }).then(function successCallback(response) {
-                Notification({ message: 'Edit festival successfully', title: 'Success' });
-                $timeout(function() {
-                    $state.go('home.festival');
-                }, 200);
+                if (response.data.data.code == 0) {
+                    Notification({ message: 'Please fill out Festival', title: 'Warning' }, 'warning');
+                } else if (response.data.data.code == 1) {
+                    Notification({ message: 'Edit festival successfully', title: 'Success' });
+                    $timeout(function() {
+                        $state.go('home.festival');
+                    }, 200);
+
+                } else if (response.data.data.code == 2) {
+                    Notification({ message: 'Timebegin greater than Timeend ', title: 'Warning' }, 'warning');
+                }
             }, function errorCallback(response) {});
         }
 
@@ -118,21 +132,25 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
             $scope.updateEvent = function() {
                 var inputTimeBegin = $('#timebeginEvent').val();
                 var inputTimeEnd = $('#timeendEvent').val();
-                var event = {};
-                event.name = $scope.nameEvent;
-                event.description = $scope.descriptionEvent;
-                event.timeBegin = inputTimeBegin;
-                event.timeEnd = inputTimeEnd;
-                $http({
-                    method: "POST",
-                    url: host + "/event/update/" + id,
-                    data: event
-                }).then(function successCallback(response) {
-                    $http.get(host + '/event/list/' + response.data.data.festivalId).then(function successCallback(response) {
-                        $scope.events = response.data.data;
-                    })
-                    Notification({ message: 'Updated', title: 'Successfully' }, 'Success');
-                }, function errorCallback(response) {});
+                if (inputTimeBegin < inputTimeEnd) {
+                    var event = {};
+                    event.name = $scope.nameEvent;
+                    event.description = $scope.descriptionEvent;
+                    event.timeBegin = inputTimeBegin;
+                    event.timeEnd = inputTimeEnd;
+                    $http({
+                        method: "POST",
+                        url: host + "/event/update/" + id,
+                        data: event
+                    }).then(function successCallback(response) {
+                        $http.get(host + '/event/list/' + response.data.data.festivalId).then(function successCallback(response) {
+                            $scope.events = response.data.data;
+                        })
+                        Notification({ message: 'Updated', title: 'Successfully' }, 'Success');
+                    }, function errorCallback(response) {});
+                } else {
+                    Notification({ message: 'Timebegin greater than Timeend ', title: 'Warning' }, 'warning');
+                }
             }
         }
 
@@ -152,27 +170,34 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
         }
 
         $scope.addEvent = function() {
-            var inputTimeBegin = $('#timebeginEvent').val();
-            var inputTimeEnd = $('#timeendEvent').val();
-            if ($scope.newNameEvent != undefined && $scope.newDescriptionEvent != undefined && $scope.timebeginEvent != '' && $scope.timeendEvent != '') {
-                var event = {};
-                event.name = $scope.newNameEvent;
-                event.description = $scope.newDescriptionEvent;
-                event.timeBegin = inputTimeBegin;
-                event.timeEnd = inputTimeEnd;
-                $http({
-                    method: "POST",
-                    url: host + "/event/create/" + festivalId,
-                    data: event
-                }).then(function successCallback(response) {
-                    $http.get(host + '/event/list/' + response.data.data.festivalId).then(function successCallback(response) {
-                        $scope.events = response.data.data;
-                    })
-                    Notification({ message: 'Created', title: 'Successfully' }, 'Success');
-                }, function errorCallback(response) {});
+            var inputTimeBegin = $('#newTimebeginEvent').val();
+            var inputTimeEnd = $('#newTimeendEvent').val();
+            if (inputTimeBegin < inputTimeEnd) {
+                if ($scope.newNameEvent != undefined && $scope.newDescriptionEvent != undefined &&
+                    inputTimeBegin != '' && inputTimeEnd != '') {
+                    var event = {};
+                    event.name = $scope.newNameEvent;
+                    event.description = $scope.newDescriptionEvent;
+                    event.timeBegin = inputTimeBegin;
+                    event.timeEnd = inputTimeEnd;
+                    $http({
+                        method: "POST",
+                        url: host + "/event/create/" + festivalId,
+                        data: event
+                    }).then(function successCallback(response) {
+                        $http.get(host + '/event/list/' + response.data.data.festivalId).then(function successCallback(response) {
+                            $scope.events = response.data.data;
+                        })
+                        Notification({ message: 'Created', title: 'Successfully' }, 'Success');
+                    }, function errorCallback(response) {});
+                } else {
+                    Notification({ message: 'Please fill out Event', title: 'Warning' }, 'warning');
+                }
+
             } else {
-                Notification({ message: 'Please fill out Event', title: 'Warning' }, 'warning');
+                Notification({ message: 'Timebegin greater than Timeend ', title: 'Warning' }, 'warning');
             }
+
         }
     }
 ]);

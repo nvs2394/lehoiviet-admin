@@ -28,7 +28,7 @@ app.controller('detailFestivalCtrl', ['$scope', '$http', '$state', '$timeout', '
             $scope.phoneNumber = data.contactInfo.phoneNumber;
             $scope.city = data.address.city;
             $scope.content = data.content;
-            $scope.typeEvent = data.typeEvent._id;
+            $scope.typeEvent = data.typeEvent._id.toString();
             $scope.time = data.timeBegin;
             $scope.mainAddress = data.address.mainAddress;
             $scope.thumbnail = hostImage + data.thumbnail.resize;
@@ -43,5 +43,23 @@ app.controller('detailFestivalCtrl', ['$scope', '$http', '$state', '$timeout', '
         }, function errorCallback(response) {
 
         });
+
+        $http.get(host + '/event/list/' + festivalId).then(function successCallback(response) {
+            $scope.events = response.data.data;
+        })
+
+        $scope.showEvent = function(eventId) {
+            $http.get(host + '/event/show/' + eventId).then(function successCallback(response) {
+                var event = response.data.data;
+                $scope.nameEvent = event.name;
+                $scope.descriptionEvent = event.description;
+                var timebegin = new Date(event.timeBegin);
+                var timeend = new Date(event.timeEnd);
+                $scope.timebeginEvent = timebegin.toLocaleString();
+                $scope.timeendEvent = timeend.toLocaleString();
+                $("#datetimepicker3").datetimepicker();
+                $("#datetimepicker4").datetimepicker();
+            });
+        }
     }
 ]);
