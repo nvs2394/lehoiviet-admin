@@ -40,7 +40,18 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Content</label>
-                                        <textarea rows="8" class="form-control" type="text" ng-model="content" disabled></textarea>
+                                        <textarea class="form-control" type="text" ng-model="content" disabled></textarea>
+                                    </div>
+                                    <div class="event-group">
+                                        <label>Event</label>
+                                        <div class="event-item" ng-repeat="event in events">
+                                            <div class="well">
+                                                <p ng-model="eventName">{{event.name}}</p>
+                                                <div class="pull-right">
+                                                    <a href="" data-toggle="modal" data-target="#detailEvent" ng-click="showEvent(event._id)"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -109,4 +120,49 @@
             </div>
         </div>
     </section>
+</div>
+<div id="detailEvent" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Detail Event</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="control-label">Name</label>
+                            <input class="form-control" type="text" ng-model="nameEvent" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+                            <textarea class="form-control" ng-model="descriptionEvent" disabled></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Date Begin</label>
+                            <div class='input-group date' id='datetimepicker3'>
+                                <input id="timebeginEvent" type='text' class="form-control" ng-model="timebeginEvent" disabled/>
+                                <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Date End</label>
+                            <div class='input-group date' id='datetimepicker4'>
+                                <input id="timeendEvent" type='text' class="form-control" ng-model="timeendEvent" disabled/>
+                                <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>

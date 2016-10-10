@@ -1,6 +1,6 @@
 "use strict";
-app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuilder', '$compile', 'ConfigService',
-    '$filter', '$state', '$timeout',
+app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuilder', '$compile',
+    '$filter', '$state', '$timeout', 'ConfigService',
     function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, $state, $timeout, ConfigService) {
 
         var host = ConfigService.host;
@@ -150,7 +150,6 @@ app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptions
             content.city = $scope.city;
             content.district = $scope.district;
             content.priceTicket = $scope.priceTicket;
-            console.log($scope.priceTicket);
             $http({
                 method: "POST",
                 url: '../api/festival/createPost',
@@ -171,24 +170,6 @@ app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptions
                 formdata.append(key, value);
             });
         };
-
-        $scope.uploadThumbnail = function(idpost) {
-            $http({
-                method: 'POST',
-                url: host + '/images/uploadThumbnailPost/' + idpost,
-                data: formdata,
-                headers: {
-                    'Content-Type': undefined
-                }
-            }).then(function successCallback(response) {
-                var data = response.data;
-                if (data.success == true) {
-                    alert(data.data._id);
-                };
-            }, function errorCallback(response) {});
-        }
-
-        //end upload thumbnail
 
         $scope.countFestival = function() {
             $http.get(host + '/festival/count').then(function success(response) {

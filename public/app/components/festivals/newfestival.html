@@ -44,7 +44,18 @@
                                             <textarea rows="4" class="form-control" type="text" ng-model="content"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <button class="btn btn-primary" data-toggle="modal" data-target="#newEvent" ng-click="addEvent()" ng-show="isShowAddEvent"><i class="fa fa-plus"></i>Add Event</button>
+                                            <label>Event</label>
+                                            <a href="" class="pull-right" data-toggle="modal" data-target="#newEvent" ng-click="addEvent()" ng-show="isShowAddEvent"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                            <!--  <button class="btn btn-primary" data-toggle="modal" data-target="#newEvent" ng-click="addEvent()" ng-show="isShowAddEvent"><i class="fa fa-plus"></i>Add Event</button> -->
+                                            </br>
+                                            <div class="event-item" ng-repeat="event in events">
+                                                <div class="well">
+                                                    <p ng-model="eventName">{{event.name}}</p>
+                                                    <div class="pull-right">
+                                                        <a href="" ng-click="askDeleteEvent($index)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -106,7 +117,7 @@
                                         <strong>Warning!</strong> Please type full information.
                                     </div>
                                     <div class="pull-right">
-                                        <button class="btn btn-primary" ng-click="createFestival(thumbnail)"><i class="fa fa-floppy-o"></i> Save </button>
+                                        <button class="btn btn-primary" ng-disabled="flag" ng-click="createFestival(thumbnail)"><i class="fa fa-floppy-o"></i> Save </button>
                                     </div>
                                 </form>
                             </div>
@@ -138,7 +149,7 @@
                         <div class="form-group">
                             <label class="control-label">Date Begin</label>
                             <div class='input-group date' id='datetimepicker3'>
-                                <input id="timebegin" type='text' class="form-control" ng-model="timebeginEvent" />
+                                <input id="timebeginEvent" type='text' class="form-control" ng-model="timebeginEvent" />
                                 <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -147,7 +158,7 @@
                         <div class="form-group">
                             <label class="control-label">Date End</label>
                             <div class='input-group date' id='datetimepicker4'>
-                                <input id="timeend" type='text' class="form-control" ng-model="timeendEvent" />
+                                <input id="timeendEvent" type='text' class="form-control" ng-model="timeendEvent" />
                                 <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -157,7 +168,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addEvent()"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveEvent()"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
