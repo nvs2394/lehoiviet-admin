@@ -207,8 +207,11 @@ app.controller('leftMenuController', ['$scope','$window', function($scope,$windo
     $scope.loggedUser = angular.fromJson($window.localStorage.loggedUser);
 }])
 
-app.controller('HeaderController', function($scope,$window) {
+app.controller('HeaderController', function($scope,$window,loginService,$state) {
     $scope.loggedUser = angular.fromJson($window.localStorage.loggedUser);
+    $scope.logout = function(){
+        loginService.logout();
+    }
 });
 
 app.controller('ContentController', function($scope) {

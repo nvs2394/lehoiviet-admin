@@ -18,21 +18,28 @@ app.controller('profileCtrl', ['$scope', '$http', '$state', 'Notification', 'Con
             $scope.isSave = false;
             $scope.isEdit = true;
             var data = {};
-            data.firstName = $scope.firstname;
-            data.lastName = $scope.lastname;
-            data.gender = $scope.gender;
-            data.company = $scope.company;
-            data.description = $scope.description;
-            $http({
-                method: "POST",
-                url: host + '/user/update/' + userId,
-                data: data
-            }).then(function successCallback(response) {
-                Notification({ message: 'Update profile successfully', title: 'Success' });
-                $state.go('home.profile');
-            }, function errorCallback(response) {
+            if ($scope.firstname != undefined && $scope.lastname != undefined && $scope.gender != undefined &&
+                $scope.company != undefined && $scope.description != undefined &&
+                $scope.firstname != "" && $scope.lastname != "" && $scope.gender != "" &&
+                $scope.company != "" && $scope.description != "") {
+                data.firstName = $scope.firstname;
+                data.lastName = $scope.lastname;
+                data.gender = $scope.gender;
+                data.company = $scope.company;
+                data.description = $scope.description;
+                $http({
+                    method: "POST",
+                    url: host + '/user/update/' + userId,
+                    data: data
+                }).then(function successCallback(response) {
+                    Notification('Cập nhật thông tin thành công');
+                    $state.go('home.profile');
+                }, function errorCallback(response) {
 
-            });
+                });
+            }else{
+                Notification({ message: 'Vui lòng nhập đầy đủ thông tin' }, 'warning');
+            }
         }
 
         $http.get(host + '/user/show/' + userId)
@@ -61,9 +68,9 @@ app.controller('profileCtrl', ['$scope', '$http', '$state', 'Notification', 'Con
                     data: data
                 }).then(function successCallback(response) {
                     if (response.data.success == false) {
-                        Notification({ message: 'Old password invalid', title: 'Warning' }, 'warning');
+                        Notification({ message: 'Mật khẩu cũ không đúng' }, 'warning');
                     } else {
-                        Notification({ message: 'Change password successfully', title: 'Success' });
+                        Notification('Thay đổi mật khẩu thành công');
                         $timeout(function() {
                             $state.go('login');
                         }, 2000)
@@ -72,7 +79,7 @@ app.controller('profileCtrl', ['$scope', '$http', '$state', 'Notification', 'Con
 
                 });
             } else {
-                Notification({ message: 'Please fill password', title: 'Warning' }, 'warning');
+                Notification({ message: 'Vui lòng nhập mật khẩu' }, 'warning');
             }
         }
     }

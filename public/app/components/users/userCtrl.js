@@ -51,11 +51,11 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
 
         function renderRole(data) {
             if (data == 1) {
-                return '<span class="badge bg-yellow">Admin</span>';
+                return '<span class="badge bg-yellow">Quản trị viên</span>';
             } else if (data == 2) {
-                return '<span class="badge bg-light-blue">Mode</span>';
+                return '<span class="badge bg-light-blue">Người điều hành</span>';
             } else {
-                return '<span class="badge bg-light-aqua">User</span>';
+                return '<span class="badge bg-light-aqua">Người dùng</span>';
             }
         }
 
