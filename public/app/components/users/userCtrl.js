@@ -85,7 +85,7 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                     url: host + '/user/delete/' + userId
                 }).then(function successCallback(response) {
                     if (response.data.data.code == 0) {
-                        Notification({ message: 'Không thể xóa Người quản trị' }, 'warning');
+                        Notification({ message: 'Không thể xóa tài khoản của bạn' }, 'warning');
                     } else if (response.data.data.code == 2) {
                         Notification({ message: 'Bạn không thể xóa tài khoản' }, 'warning');
                     } else {
