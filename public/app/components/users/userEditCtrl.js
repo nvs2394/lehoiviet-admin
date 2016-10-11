@@ -18,23 +18,23 @@ app.controller('userEditCtrl', ['$scope', '$http', '$state', 'ConfigService', fu
             $scope.description = response.data.data.description;
         });
 
-    $scope.updateUser = function() {
-        var data = {};
-        data.firstName = $scope.firstname;
-        data.lastName = $scope.lastname;
-        data.gender = $scope.gender;
-        data.company = $scope.company;
-        data.description = $scope.description;
-        data.role = $scope.roleId;
-        $http({
-            method: "POST",
-            url: host + '/user/update/' + userId,
-            data: data
-        }).then(function successCallback(response) {
-            $state.go('home.user');
-        }, function errorCallback(response) {
+    // $scope.updateUser = function() {
+    //     var data = {};
+    //     data.firstName = $scope.firstname;
+    //     data.lastName = $scope.lastname;
+    //     data.gender = $scope.gender;
+    //     data.company = $scope.company;
+    //     data.description = $scope.description;
+    //     data.role = $scope.roleId;
+    //     $http({
+    //         method: "POST",
+    //         url: host + '/user/update/' + userId,
+    //         data: data
+    //     }).then(function successCallback(response) {
+    //         $state.go('home.user');
+    //     }, function errorCallback(response) {
 
-        });
-    }
+    //     });
+    // }
 
 }]);

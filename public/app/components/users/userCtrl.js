@@ -64,14 +64,13 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
         function getOnlyId(data, type, full, meta) {
             var isActive = full.isActive;
             var icon = isActive == 1 ? 'fa-unlock-alt' : 'fa-lock';
-            return '<button class="btn btn-default fa fa-edit" ng-click="editUser(\'' + data + '\')">' +
+            return '<button class="btn btn-default fa fa-info-circle" ng-click="editUser(\'' + data + '\')">' +
                 '</button>' +
                 '<button class="btn btn-default fa fa-trash-o" data-toggle="modal" data-target="#askDelete"  ng-click="deleteUser(\'' + data + '\',' + !status + ')">' +
                 '</button>' +
                 '<button class="btn btn-default fa ' + icon + '" data-toggle="modal" data-target="#askInactive"  ng-click="isActive(\'' + data + '\',' + !isActive + ')">' +
                 '</button>';
         }
-
         $scope.editUser = function(data) {
             $state.go('home.user.edit', { userId: data });
         }
@@ -86,11 +85,15 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                     if (response.data.data.code == 0) {
                         Notification({ message: 'Không thể xóa Người quản trị', title: 'Warning' }, 'warning');
                     } else {
-                        Notification({ message: 'Đã xóa người dùng'});
-                        $scope.dtInstance.reloadData();
-                        $scope.countTotalUser();
-                        $scope.getAdmin();
-                        $scope.getUserInactive();
+                        if (response.data.statusCode == 401) {
+                            Notification({ message: 'Bạn không có quyền xóa thành viên'}, 'warning');
+                        } else {
+                            Notification({ message: 'Đã xóa người dùng' });
+                            $scope.dtInstance.reloadData();
+                            $scope.countTotalUser();
+                            $scope.getAdmin();
+                            $scope.getUserInactive();
+                        }
                     }
                 }, function errorCallback(response) {
 
@@ -109,6 +112,7 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                     url: host + '/user/inactive/' + userId,
                     data: data
                 }).then(function successCallback(response) {
+                    console.log(response);
                     $scope.dtInstance.reloadData();
                     $scope.countTotalUser();
                     $scope.getAdmin();
