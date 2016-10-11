@@ -83,10 +83,10 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                     url: host + '/user/delete/' + userId
                 }).then(function successCallback(response) {
                     if (response.data.data.code == 0) {
-                        Notification({ message: 'Không thể xóa Người quản trị', title: 'Warning' }, 'warning');
+                        Notification({ message: 'Không thể xóa Người quản trị' }, 'warning');
                     } else {
                         if (response.data.statusCode == 401) {
-                            Notification({ message: 'Bạn không có quyền xóa thành viên'}, 'warning');
+                            Notification({ message: 'Bạn không có quyền xóa thành viên' }, 'warning');
                         } else {
                             Notification({ message: 'Đã xóa người dùng' });
                             $scope.dtInstance.reloadData();
@@ -112,11 +112,14 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                     url: host + '/user/inactive/' + userId,
                     data: data
                 }).then(function successCallback(response) {
-                    console.log(response);
-                    $scope.dtInstance.reloadData();
-                    $scope.countTotalUser();
-                    $scope.getAdmin();
-                    $scope.getUserInactive();
+                    if (response.data.statusCode == 401) {
+                        Notification({ message: 'Bạn không có quyền khóa tài khoản' }, 'warning');
+                    } else {
+                        $scope.dtInstance.reloadData();
+                        $scope.countTotalUser();
+                        $scope.getAdmin();
+                        $scope.getUserInactive();
+                    }
                 }, function errorCallback(response) {
 
                 });
