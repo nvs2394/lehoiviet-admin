@@ -10,7 +10,7 @@ app.controller('statictisCtrl', ['$scope', '$http', 'ConfigService', function($s
                 data.push(response.data.data[i].count);
             }
             $scope.labels = labels;
-            $scope.series = ['Posted'];
+            $scope.series = ['Lễ hội'];
             $scope.data = [data];
             $scope.onClick = function(points, evt) {
                 //console.log(points, evt);
@@ -27,7 +27,7 @@ app.controller('statictisCtrl', ['$scope', '$http', 'ConfigService', function($s
                 data.push(response.data.data[i].count);
             }
             $scope.labelsUser = labels;
-            $scope.seriesUser = ['User Created'];
+            $scope.seriesUser = ['Người dùng'];
             $scope.dataUser = [data];
             $scope.onClick = function(points, evt) {
                 //console.log(points, evt);
@@ -44,7 +44,7 @@ app.controller('statictisCtrl', ['$scope', '$http', 'ConfigService', function($s
                 data.push(response.data.data[i].count);
             }
             $scope.labelsComment = labels;
-            $scope.seriesComment = ['Comment Created'];
+            $scope.seriesComment = ['Bình luận'];
             $scope.dataComment = [data];
             $scope.onClick = function(points, evt) {
                 //console.log(points, evt);
@@ -61,7 +61,7 @@ app.controller('statictisCtrl', ['$scope', '$http', 'ConfigService', function($s
                 data.push(response.data.data[i].count);
             }
             $scope.labelsBlog = labels;
-            $scope.seriesBlog = ['Blog Created'];
+            $scope.seriesBlog = ['Blog'];
             $scope.dataBlog = [data];
             $scope.onClick = function(points, evt) {
                 //console.log(points, evt);

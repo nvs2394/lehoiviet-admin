@@ -1,17 +1,53 @@
 <header class="main-header">
-    <!-- Logo -->
     <a ui-sref="home" class="logo">
-        <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>L</b>HV</span>
-        <!-- logo for regular state and mobile devices -->
-        <!-- <span class="logo-lg"><img src="../images/logo150_40_white.png"></span> -->
+        <span class="logo-lg"><img src="public/assets/images/logo150x40.png"></span>
     </a>
-    <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
-        <!-- Sidebar toggle button-->
         <a ui-sref="home.index" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle
         </span>
         </a>
+        <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown user user-menu">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+              <img ng-src="http://lehoiviet.herokuapp.com/{{loggedUser.avatar}}" class="user-image" alt="User Image">
+              <span class="hidden-xs">{{loggedUser.firstName |uppercase}} {{loggedUser.lastName |uppercase}}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img ng-src="http://lehoiviet.herokuapp.com/{{loggedUser.avatar}}" class="img-circle" alt="User Image">
+
+                <p>
+                  {{loggedUser.firstName |uppercase}} {{loggedUser.lastName|uppercase}}
+                </p>
+              </li>
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a ui-sref="home.profile.changepassword({userId:{{loggedUser._id}}})">Đổi mật khẩu</a>
+                  </div>
+                  <!-- <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                  </div> -->
+                </div>
+              </li>
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a ui-sref="home.profile({userId:{{loggedUser._id}}})" class="btn btn-primary btn-flat">Thông tin</a>
+                </div>
+                <div class="pull-right">
+                  <a href="#" ng-click="logout()" class="btn btn-default btn-flat">Đăng xuất</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </nav>
 </header>

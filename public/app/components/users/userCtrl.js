@@ -42,9 +42,9 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
             .withOption('order', [2, 'desc']);
         $scope.dtColumns = [
             DTColumnBuilder.newColumn('email').withTitle('email'),
-            DTColumnBuilder.newColumn('role').withTitle('Role').renderWith(renderRole),
-            DTColumnBuilder.newColumn('createAt').withTitle('Created At').renderWith(renderDate),
-            DTColumnBuilder.newColumn('_id').withTitle('Actions').renderWith(getOnlyId)
+            DTColumnBuilder.newColumn('role').withTitle('Vai trò').renderWith(renderRole),
+            DTColumnBuilder.newColumn('createAt').withTitle('Ngày tạo').renderWith(renderDate),
+            DTColumnBuilder.newColumn('_id').withTitle('Chọn').renderWith(getOnlyId)
         ];
 
         $scope.dtInstance = {};
@@ -84,9 +84,9 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                     url: host + '/user/delete/' + userId
                 }).then(function successCallback(response) {
                     if (response.data.data.code == 0) {
-                        Notification({ message: 'Can not remove admin', title: 'Warning' }, 'warning');
+                        Notification({ message: 'Không thể xóa Người quản trị', title: 'Warning' }, 'warning');
                     } else {
-                        Notification({ message: 'Deleted', title: 'Success' });
+                        Notification({ message: 'Đã xóa người dùng'});
                         $scope.dtInstance.reloadData();
                         $scope.countTotalUser();
                         $scope.getAdmin();

@@ -20,7 +20,7 @@ app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptions
             .withOption('order', [2, 'desc'])
         $scope.dtColumns = [
             DTColumnBuilder.newColumn('title').withTitle('Name').renderWith(renderTitle),
-            DTColumnBuilder.newColumn('address.city').withTitle('City'),
+            DTColumnBuilder.newColumn('userId.email').withTitle('Author'),
             DTColumnBuilder.newColumn('createAt').withTitle('Created At').renderWith(renderDate),
             DTColumnBuilder.newColumn('_id').withTitle('Actions').renderWith(getOnlyId)
         ];

@@ -1,6 +1,6 @@
-<aside class="main-sidebar" ng-controller="loginCtrl">
-    <section class="sidebar" data-ng-init="getCurrentUser()">
-        <div class="user-panel">
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <!-- <div class="user-panel">
             <div class="pull-left image">
                 <img ng-src="http://lehoiviet.herokuapp.com/{{loggedUser.avatar}}" class="img-circle" alt="User Image">
             </div>
@@ -18,27 +18,27 @@
                 </div>
                 <br>
             </div>
-        </div>
+        </div> -->
         <ul class="sidebar-menu">
-            <li class="header">Menu</li>
+          <!--   <li class="header">Menu</li> -->
             <li ui-sref-active="active">
                 <a ui-sref="home.index" ui-sref-opts="{reload: true}">
-                    <i class="fa fa-home"></i> <span>Home</span>
+                    <i class="fa fa-home"></i> <span>Trang chủ</span>
                 </a>
             </li>
             <li ui-sref-active="active">
                 <a ui-sref="home.user" ui-sref-opts="{reload: true}">
-                    <i class="fa fa-user"></i> <span>User</span>
+                    <i class="fa fa-user"></i> <span>Người dùng</span>
                 </a>
             </li>
             <li ui-sref-active="active">
                 <a ui-sref="home.festival" ui-sref-opts="{reload: true}">
-                    <i class="fa fa-paper-plane"></i> <span>Festival</span>
+                    <i class="fa fa-paper-plane"></i> <span>Lễ hội</span>
                 </a>
             </li>
             <li ui-sref-active="active">
                 <a ui-sref="home.comment" ui-sref-opts="{reload: true}">
-                    <i class="fa fa-comment-o"></i> <span>Comment</span></a>
+                    <i class="fa fa-comment-o"></i> <span>Bình luận</span></a>
             </li>
            <!--  <li ui-sref-active="active">
                 <a ui-sref="home.gallery" ui-sref-opts="{reload: true}">
@@ -46,12 +46,12 @@
             </li> -->
             <li ui-sref-active="active">
                 <a ui-sref="home.statictis" ui-sref-opts="{reload: true}">
-                    <i class="fa fa-area-chart"></i> <span>Statictis</span>
+                    <i class="fa fa-area-chart"></i> <span>Thống kê</span>
                 </a>
             </li>
             <li ui-sref-active="active">
                 <a ui-sref="home.config" ui-sref-opts="{reload: true}">
-                    <i class="fa fa-cog text-white"></i> <span>Config</span></a>
+                    <i class="fa fa-cog text-white"></i> <span>Danh mục</span></a>
             </li>
         </ul>
     </section>

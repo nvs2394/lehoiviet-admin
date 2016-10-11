@@ -1,12 +1,12 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-        Dashboard
-        <small>Control panel</small>
+        Người dùng
+        <small>Bảng điều khiển</small>
       </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> User</a></li>
-            <li class="active">Dashboard</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Thông tin người dùng</a></li>
+            <li class="active">Quản lí người dùng</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -16,8 +16,8 @@
                 <div class="info-box">
                     <span class="info-box-icon bg-aqua"><i class="fa fa-user-plus"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Add new user</span>
-                        <a ui-sref="home.user.new">Click to add</a>
+                        <span class="info-box-text">Thêm mới người dùng</span>
+                        <a ui-sref="home.user.new">Thêm</a>
                     </div>
                 </div>
             </div>
@@ -25,19 +25,16 @@
                 <div class="info-box">
                     <span class="info-box-icon bg-red"><i class="fa fa-user"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">All user</span>
+                        <span class="info-box-text">Tất cả người dùng</span>
                         <span class="info-box-number">{{totalUser}}</span>
                     </div>
-                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box -->
             </div>
-            <!-- /.col -->
             <div class="col-md-3 col-sm-6 col-xs-12" data-ng-init="getAdmin()">
                 <div class="info-box">
                     <span class="info-box-icon bg-green"><i class="fa fa-expeditedssl"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Admin</span>
+                        <span class="info-box-text">Quản trị viên</span>
                         <span class="info-box-number">{{totalAdmin}}</span>
                     </div>
                     <!-- /.info-box-content -->
@@ -49,7 +46,7 @@
                 <div class="info-box">
                     <span class="info-box-icon bg-yellow"><i class="fa  fa-ban"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">User inactive</span>
+                        <span class="info-box-text">Người dùng bị khóa</span>
                         <span class="info-box-number">{{userInactive}}</span>
                     </div>
                     <!-- /.info-box-content -->
@@ -62,7 +59,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">User Data Table</h3>
+                        <h3 class="box-title">Danh sách người dùng</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -81,7 +78,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add a new User</h4>
+                    <h4 class="modal-title">Thêm mới người dùng</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal">
@@ -94,7 +91,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
+                                    <label for="inputPassword3" class="col-sm-3 control-label">Mật khẩu</label>
                                     <div class="col-sm-9">
                                         <input class="form-control" id="inputPassword3" ng-model="newPassword" placeholder="Password" type="password">
                                     </div>
@@ -102,13 +99,13 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputEmail3" class="col-sm-3 control-label" disabled="">First Name</label>
+                                    <label for="inputEmail3" class="col-sm-3 control-label" disabled="">Họ</label>
                                     <div class="col-sm-9">
                                         <input class="form-control" id="inputEmail3" ng-model="newFirstname" placeholder="First Name" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputEmail3" class="col-sm-3 control-label" disabled="">Last Name</label>
+                                    <label for="inputEmail3" class="col-sm-3 control-label" disabled="">Tên</label>
                                     <div class="col-sm-9">
                                         <input class="form-control" id="inputEmail3" ng-model="newLastname" placeholder="Last Name" type="text">
                                     </div>
@@ -116,7 +113,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6" data-ng-init="getAllRole()">
-                                    <label for="inputEmail3" class="col-sm-3 control-label" disabled="">Role</label>
+                                    <label for="inputEmail3" class="col-sm-3 control-label" disabled="">Vai trò</label>
                                     <div class="col-sm-9">
                                         <select class="form-control select2" style="width: 100%;" ng-model="newRole">
                                             <option value="{{role.id}}" ng-repeat="role in allRoles">{{role.name}}</option>
@@ -124,7 +121,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputEmail3" class="col-sm-3 control-label" disabled="">Company</label>
+                                    <label for="inputEmail3" class="col-sm-3 control-label" disabled="">Thông tin công ty</label>
                                     <div class="col-sm-9">
                                         <input class="form-control" id="inputEmail3" ng-model="newCompany" placeholder="Company" type="text">
                                     </div>
@@ -218,14 +215,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Delete user</h4>
+                    <h4 class="modal-title">Xóa người dùng</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure ?</p>
+                    <p>Bạn có chắc chắn muốn xóa người dùng này ?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="askDeleteUser()">Yes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="askDeleteUser()">Đồng ý</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
                 </div>
             </div>
         </div>
@@ -238,14 +235,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Inactive user</h4>
+                    <h4 class="modal-title">Khóa tài khoản người dùng</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure inactive ?</p>
+                    <p>Bạn có chắc chắn muốn khóa người dùng này ?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="askInactiveUser()">Yes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="askInactiveUser()">Đồng ý</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
                 </div>
             </div>
         </div>

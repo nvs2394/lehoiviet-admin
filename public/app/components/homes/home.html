@@ -1,12 +1,12 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-        Dashboard
-        <small>Version 1.0</small>
+        Trang chủ
+        <small>Phiên bản 1.0</small>
       </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+            <li class="active">Bảng điều khiển</li>
         </ol>
     </section>
     <section class="content">
@@ -16,12 +16,12 @@
                 <div class="small-box bg-aqua">
                     <div class="inner">
                         <h3>{{totalFestival}}</h3>
-                        <p>Festival</p>
+                        <p>Lễ hội</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-speakerphone"></i>
                     </div>
-                    <a ui-sref="home.festival" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a ui-sref="home.festival" class="small-box-footer">Xem thêm<i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6">
@@ -34,7 +34,7 @@
                     <div class="icon">
                         <i class="ion ion-ios-compose-outline"></i>
                     </div>
-                    <a ui-sref="home.blog" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a ui-sref="home.blog" class="small-box-footer">Xem thêm<i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6">
@@ -42,12 +42,12 @@
                 <div class="small-box bg-aqua">
                     <div class="inner">
                         <h3>{{totalCommentPost}}</h3>
-                        <p>Comments</p>
+                        <p>Bình luận</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-chatbubble-working"></i>
                     </div>
-                    <a ui-sref="home.comment" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a ui-sref="home.comment" class="small-box-footer">Xem thêm<i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6">
@@ -55,12 +55,12 @@
                 <div class="small-box bg-aqua">
                     <div class="inner">
                         <h3>{{totalUser}}</h3>
-                        <p>Users</p>
+                        <p>Người dùng</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-                    <a ui-sref="home.user" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a ui-sref="home.user" class="small-box-footer">Xem thêm<i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
             <div class="col-md-9">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Festival is Pending</h3>
+                        <h3 class="box-title">Lễ hội chờ duyệt</h3>
                     </div>
                     <div class="box-body">
                         <table class="table table-bordered table-hover" datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance"></table>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Pined Festival</h3>
+                        <h3 class="box-title">Gim lễ hội</h3>
                     </div>
                     <div class="box-body">
                         <table class="table table-bordered table-hover" datatable="" dt-options="dtOptionsPinPost" dt-columns="dtColumnsPinPost" dt-instance="dtInstancePinPost"></table>
@@ -87,26 +87,24 @@
                 <div class="info-box bg-yellow">
                     <span class="info-box-icon"><i class="ion ion-ios-videocam"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Video</span>
                         <span class="info-box-number">{{totalVideos}}</span>
                         <span class="progress-description">
-                    Total video all posts
+                    Video lễ hội
                   </span>
                     </div>
                 </div>
                 <div class="info-box bg-green">
                     <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Like Post</span>
                         <span class="info-box-number">{{totalLikePost}}</span>
                         <span class="progress-description">
-                    Total like all posts
+                    Lượt thích lễ hội
                   </span>
                     </div>
                 </div>
                 <div class="box box-danger">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Top Members</h3>
+                        <h3 class="box-title">Thành viên tiêu biểu</h3>
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                             </button>
@@ -124,7 +122,7 @@
                         </ul>
                     </div>
                     <div class="box-footer text-center">
-                        <a ui-sref="home.user" class="uppercase">View All Users</a>
+                        <a ui-sref="home.user" class="uppercase">Xem tất cả thành viên</a>
                     </div>
                 </div>
             </div>
@@ -137,14 +135,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Public Festival</h4>
+                    <h4 class="modal-title">Xuất bản lễ hội</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure ?</p>
+                    <p>Bạn có chắc chắn muốn xuất bản lễ hội này ?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="isPublic()">Yes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="isPublic()">Đồng ý</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
         </div>
@@ -155,14 +153,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Pin Festival</h4>
+                    <h4 class="modal-title">Gim lễ hội</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure ?</p>
+                    <p>Bạn có chắc chắn muốn gim lễ hội này ?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="isPinned()">Yes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="isPinned()">Đồng ý</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
         </div>

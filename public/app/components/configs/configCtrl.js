@@ -12,10 +12,10 @@ app.controller('configCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBu
             .withOption('bLengthChange', false)
             .withOption('order', [0, 'desc'])
         $scope.dtColumns = [
-            DTColumnBuilder.newColumn('name').withTitle('Name'),
-            DTColumnBuilder.newColumn('description').withTitle('Description'),
-            DTColumnBuilder.newColumn('createAt').withTitle('Created At').renderWith(renderDate),
-            DTColumnBuilder.newColumn('_id').withTitle('Actions').renderWith(getOnlyId)
+            DTColumnBuilder.newColumn('name').withTitle('Tên'),
+            DTColumnBuilder.newColumn('description').withTitle('Mô tả'),
+            DTColumnBuilder.newColumn('createAt').withTitle('Ngày tạo').renderWith(renderDate),
+            DTColumnBuilder.newColumn('_id').withTitle('Chọn').renderWith(getOnlyId)
         ];
 
         $scope.dtInstance = {};

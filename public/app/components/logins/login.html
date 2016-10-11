@@ -3,12 +3,10 @@
         <div class="login-logo">
             <a href="/"><img src="/public/assets/images/favicon1.ico"><b> Dashboard</b></a>
         </div>
-        <!-- /.login-logo -->
         <div class="login-box-body">
-            <div class="alert alert-warning" ng-show="showMessage">
-                <strong>Warning!</strong> {{message}}
+            <div class="alert alert-info" ng-show="showMessage">
+                <strong>{{message}}</strong>
             </div>
-            <!-- <p class="login-box-msg" ng-show="showMessage"> {{message}}</p> -->
             <form>
                 <div class="form-group has-feedback">
                     <input type="email" class="form-control" placeholder="Email" ng-model="email">

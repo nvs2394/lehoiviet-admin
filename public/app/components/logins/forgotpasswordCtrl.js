@@ -12,7 +12,6 @@ app.controller('forgotpasswordCtrl', ['$scope', '$http', 'ConfigService',
                     data: data
                 }).then(function successCallback(response) {
                     $scope.rememberEmail = false;
-                    console.log(response.data.data.code);
                     if (response.data.data.code == 0) {
                         $scope.errFalse = true;
                         $scope.success = false;

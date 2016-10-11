@@ -48,10 +48,10 @@ app.controller('homeCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
             })
             .withOption('bLengthChange', false)
         $scope.dtColumns = [
-            DTColumnBuilder.newColumn('title').withTitle('Title').renderWith(renderTitle),
-            DTColumnBuilder.newColumn('address.city').withTitle('City'),
-            DTColumnBuilder.newColumn('createAt').withTitle('Created At').renderWith(renderDate),
-            DTColumnBuilder.newColumn('_id').withTitle('Actions').renderWith(getOnlyId)
+            DTColumnBuilder.newColumn('title').withTitle('Tên').renderWith(renderTitle),
+            DTColumnBuilder.newColumn('userId.name').withTitle('Người đăng'),
+            DTColumnBuilder.newColumn('createAt').withTitle('Ngày đăng').renderWith(renderDate),
+            DTColumnBuilder.newColumn('_id').withTitle('Chọn').renderWith(getOnlyId)
         ];
 
         $scope.dtInstance = {};
@@ -102,10 +102,10 @@ app.controller('homeCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
             })
             .withOption('bLengthChange', false);
         $scope.dtColumnsPinPost = [
-            DTColumnBuilder.newColumn('title').withTitle('Title').renderWith(renderTitle),
-            DTColumnBuilder.newColumn('address.city').withTitle('City'),
-            DTColumnBuilder.newColumn('createAt').withTitle('Created At').renderWith(renderDate),
-            DTColumnBuilder.newColumn('_id').withTitle('Actions').renderWith(pinPost)
+            DTColumnBuilder.newColumn('title').withTitle('Tên').renderWith(renderTitle),
+            DTColumnBuilder.newColumn('userId.name').withTitle('Người đăng'),
+            DTColumnBuilder.newColumn('createAt').withTitle('Ngày đăng').renderWith(renderDate),
+            DTColumnBuilder.newColumn('_id').withTitle('Chọn').renderWith(pinPost)
         ];
 
         $scope.dtInstancePinPost = {};

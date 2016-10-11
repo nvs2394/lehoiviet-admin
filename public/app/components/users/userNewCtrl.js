@@ -21,7 +21,6 @@ app.controller('userNewCtrl', ['$scope', '$http', '$state', 'ConfigService', fun
             url: host + '/user/create',
             data: data
         }).then(function successCallback(response) {
-            console.log(response);
             if (response.data.data == 0) {} else {
                 $state.go('home.user');
             }
