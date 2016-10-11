@@ -29,7 +29,9 @@ app.controller('newFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'Upl
             ) {
                 var inputTimeBegin = $('#timebegin').val();
                 var inputTimeEnd = $('#timeend').val();
-                if (inputTimeBegin > inputTimeEnd) {
+                var timebegin = new Date(inputTimeBegin);
+                var timeend = new Date(inputTimeEnd);
+                if (timebegin < timeend) {
                     if (thumbnail != undefined) {
                         thumbnail.upload = Upload.upload({
                             url: host + '/image/upload/thumbnail/festival',
@@ -39,8 +41,6 @@ app.controller('newFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'Upl
                         thumbnail.upload.then(function(response) {
                             var image = response.data.data;
                             var festivalInfo = {};
-                            var timebegin = new Date(inputTimeBegin);
-                            var timeend = new Date(inputTimeEnd);
                             festivalInfo.title = $scope.title;
                             festivalInfo.description = $scope.description;
                             festivalInfo.content = $scope.content;
@@ -63,7 +63,7 @@ app.controller('newFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'Upl
                                 url: host + '/festival/create',
                                 data: festivalInfo
                             }).then(function successCallback(response) {
-                                Notification({ message: 'Added new festival', title: 'Success' });
+                                Notification('Tạo lễ hội thành công');
                                 $timeout(function() {
                                     $state.go('home.festival');
                                 }, 200);
@@ -76,11 +76,11 @@ app.controller('newFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'Upl
                     } else {
                         $scope.isShowErr = true;
                     }
-                }else{
-                    Notification({ message: 'Please fill out festival', title: 'Warning' }, 'warning');
+                } else {
+                    Notification({ message: 'Vui lòng điền đầy đủ thông tin' }, 'warning');
                 }
             } else {
-                Notification({ message: 'Timebegin greater than Timeend ', title: 'Warning' }, 'warning');
+                Notification({ message: 'Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc ' }, 'warning');
             }
         };
 
@@ -99,7 +99,7 @@ app.controller('newFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'Upl
                     });
 
                 } else {
-                    Notification({ message: 'Please fill out Event', title: 'Warning' }, 'warning');
+                    Notification({ message: 'Vui lòng điền đầy đủ thông tin' }, 'warning');
                 }
             }
         }

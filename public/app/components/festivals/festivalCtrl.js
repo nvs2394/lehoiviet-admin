@@ -19,10 +19,10 @@ app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptions
             .withOption('bLengthChange', false)
             .withOption('order', [2, 'desc'])
         $scope.dtColumns = [
-            DTColumnBuilder.newColumn('title').withTitle('Name').renderWith(renderTitle),
-            DTColumnBuilder.newColumn('userId.email').withTitle('Author'),
-            DTColumnBuilder.newColumn('createAt').withTitle('Created At').renderWith(renderDate),
-            DTColumnBuilder.newColumn('_id').withTitle('Actions').renderWith(getOnlyId)
+            DTColumnBuilder.newColumn('title').withTitle('Tên lễ hội').renderWith(renderTitle),
+            DTColumnBuilder.newColumn('userId.email').withTitle('Người đăng'),
+            DTColumnBuilder.newColumn('createAt').withTitle('Ngày đăng').renderWith(renderDate),
+            DTColumnBuilder.newColumn('_id').withTitle('Chọn').renderWith(getOnlyId)
         ];
 
         $scope.dtInstance = {};
@@ -114,62 +114,6 @@ app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptions
                     });
             }
         }
-
-        $scope.resetForm = function() {
-            $scope.title = '';
-            $scope.description = '';
-            $scope.content = '';
-            $scope.website = '';
-            $scope.emailAddress = '';
-            $scope.phoneNumber = '';
-            $scope.typeEvent = '';
-            $scope.mainAddress = '';
-            $scope.province = '';
-            $scope.district = '';
-            $scope.priceTicket = '';
-        }
-
-        $scope.createFestival = function() {
-            var timeArr = $scope.time.split('-');
-            var timeBegin = timeArr[0];
-            var timeEnd = timeArr[1];
-            timeBegin = new Date(timeBegin);
-            timeEnd = new Date(timeEnd);
-
-            var content = {};
-            content.title = $scope.title;
-            content.description = $scope.description;
-            content.content = $scope.content;
-            content.timeBegin = timeBegin.toISOString();
-            content.timeEnd = timeEnd.toISOString();
-            content.website = $scope.website;
-            content.emailAddress = $scope.emailAddress;
-            content.phoneNumber = $scope.phoneNumber;
-            content.typeEvent = $scope.typeEvent;
-            content.mainAddress = $scope.mainAddress;
-            content.city = $scope.city;
-            content.district = $scope.district;
-            content.priceTicket = $scope.priceTicket;
-            $http({
-                method: "POST",
-                url: '../api/festival/createPost',
-                withCredentials: true,
-                data: content
-            }).then(function successCallback(response) {
-                var data = response.data;
-                $scope.uploadThumbnail(data.data._id);
-                $state.go('home.festival');
-            }, function errorCallback(response) {});
-
-        };
-
-        /*upload image for post*/
-        var formdata = new FormData();
-        $scope.getTheFiles = function($files) {
-            angular.forEach($files, function(value, key) {
-                formdata.append(key, value);
-            });
-        };
 
         $scope.countFestival = function() {
             $http.get(host + '/festival/count').then(function success(response) {

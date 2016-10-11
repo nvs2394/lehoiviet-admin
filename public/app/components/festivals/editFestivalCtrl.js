@@ -93,7 +93,7 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
                     }
                 }
             } else {
-                Notification({ message: 'Timebegin greater than Timeend ', title: 'Warning' }, 'warning');
+                Notification({ message: 'Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc' }, 'warning');
             }
         }
 
@@ -104,15 +104,15 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
                 data: data
             }).then(function successCallback(response) {
                 if (response.data.data.code == 0) {
-                    Notification({ message: 'Please fill out Festival', title: 'Warning' }, 'warning');
+                    Notification({ message: 'Vui lòng điền đầy đủ thông tin' }, 'warning');
                 } else if (response.data.data.code == 1) {
-                    Notification({ message: 'Edit festival successfully', title: 'Success' });
+                    Notification('Chỉnh sửa lễ hội thành công');
                     $timeout(function() {
                         $state.go('home.festival');
                     }, 200);
 
                 } else if (response.data.data.code == 2) {
-                    Notification({ message: 'Timebegin greater than Timeend ', title: 'Warning' }, 'warning');
+                    Notification({ message: 'Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc'}, 'warning');
                 }
             }, function errorCallback(response) {});
         }
@@ -146,10 +146,10 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
                         $http.get(host + '/event/list/' + response.data.data.festivalId).then(function successCallback(response) {
                             $scope.events = response.data.data;
                         })
-                        Notification({ message: 'Updated', title: 'Successfully' }, 'Success');
+                        Notification({ message: 'Chỉnh sửa sự kiện thành công'}, 'Success');
                     }, function errorCallback(response) {});
                 } else {
-                    Notification({ message: 'Timebegin greater than Timeend ', title: 'Warning' }, 'warning');
+                    Notification({ message: 'Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc'}, 'warning');
                 }
             }
         }
@@ -163,7 +163,7 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
                 }).then(function successCallback(response) {
                     $http.get(host + '/event/list/' + festivalId).then(function successCallback(response) {
                         $scope.events = response.data.data;
-                        Notification({ message: 'Deleted', title: 'Successfully' }, 'Success');
+                        Notification({ message: 'Đã xóa sự kiện' }, 'Success');
                     })
                 }, function errorCallback(response) {});
             }
@@ -191,11 +191,11 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
                         Notification({ message: 'Created', title: 'Successfully' }, 'Success');
                     }, function errorCallback(response) {});
                 } else {
-                    Notification({ message: 'Please fill out Event', title: 'Warning' }, 'warning');
+                    Notification({ message: 'Vui lòng điền đầy đủ thông tin' }, 'warning');
                 }
 
             } else {
-                Notification({ message: 'Timebegin greater than Timeend ', title: 'Warning' }, 'warning');
+                Notification({ message: 'Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc'}, 'warning');
             }
 
         }

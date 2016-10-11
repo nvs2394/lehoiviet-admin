@@ -42,7 +42,7 @@ ng\:form {
 
     color: #fff;
     border-radius: 0;
-    background: #337ab7;
+    background: #3C8DBC;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, .3);
 }
 .ui-notification.killed
@@ -82,7 +82,7 @@ ng\:form {
 .ui-notification.warning
 {
     color: #fff;
-    background: #f0ad4e;
+    background: #DD4B39;
 }
 .ui-notification.error
 {
@@ -92,7 +92,7 @@ ng\:form {
 .ui-notification.success
 {
     color: #fff;
-    background: #5cb85c;
+    background: #3C8DBC;
 }
 .ui-notification.info
 {

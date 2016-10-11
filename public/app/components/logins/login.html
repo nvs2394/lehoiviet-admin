@@ -1,10 +1,10 @@
 <div class="login-admin">
     <div class="login-box">
         <div class="login-logo">
-            <a href="/"><img src="/public/assets/images/favicon1.ico"><b> Dashboard</b></a>
+            <a href="/"><img src="/public/assets/images/favicon1.ico"><b> Trang quản trị</b></a>
         </div>
         <div class="login-box-body">
-            <div class="alert alert-info" ng-show="showMessage">
+            <div class="alert alert-danger alert-dismissible fade in" ng-show="showMessage">
                 <strong>{{message}}</strong>
             </div>
             <form>
@@ -22,13 +22,13 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat" ng-click="login()">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat" ng-click="login()">Đăng nhập</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
             <!-- /.social-auth-links -->
-            <a ui-sref="forgotpassword" ui-sref-opts="{reload: true}">I forgot my password</a>
+            <a ui-sref="forgotpassword" ui-sref-opts="{reload: true}">Tôi quên mật khẩu</a>
             <br>
             <p class="text-center">Make with <i class="ion-heart text-red"> Vietnam</i></p>
         </div>

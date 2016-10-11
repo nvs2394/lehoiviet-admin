@@ -12,17 +12,17 @@ app.controller('loginCtrl', ['$scope', '$rootScope', '$http', '$state', '$window
                 if (data != undefined) {
                     if (data.message != undefined) {
                         if (data.message.code == 1) {
-                            $scope.message = 'Email incorrect';
+                            $scope.message = 'Email không đúng';
                             $scope.showMessage = true;
                             return $state.go('login');
                         }
                         if (data.message.code == 2) {
-                            $scope.message = 'Password incorrect';
+                            $scope.message = 'Sai mật khẩu';
                             $scope.showMessage = true;
                             return $state.go('login');
                         }
                         if (data.message.code == 3) {
-                            $scope.message = 'Permission Denied';
+                            $scope.message = 'Bạn không có quyền truy cập';
                             $scope.showMessage = true;
                             return $state.go('login');
                         }
@@ -32,12 +32,12 @@ app.controller('loginCtrl', ['$scope', '$rootScope', '$http', '$state', '$window
                         $state.go('home.index');
                     }
                 } else {
-                    $scope.message = 'Login false';
+                    $scope.message = 'Đăng nhập không thành công';
                 }
             })
         } else {
             $scope.showMessage = true;
-            $scope.message = 'Please input email and password';
+            $scope.message = 'Vui lòng nhập Email và Mật khẩu';
         }
     };
     $scope.logout = function() {
