@@ -52,8 +52,10 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
         function renderRole(data) {
             if (data == 1) {
                 return '<span class="badge bg-yellow">Admin</span>';
+            } else if (data == 2) {
+                return '<span class="badge bg-light-blue">Mode</span>';
             } else {
-                return '<span class="badge bg-light-blue">User</span>';
+                return '<span class="badge bg-light-aqua">User</span>';
             }
         }
 
@@ -84,9 +86,11 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                 }).then(function successCallback(response) {
                     if (response.data.data.code == 0) {
                         Notification({ message: 'Không thể xóa Người quản trị' }, 'warning');
+                    } else if (response.data.data.code == 2) {
+                        Notification({ message: 'Bạn không thể xóa tài khoản' }, 'warning');
                     } else {
                         if (response.data.statusCode == 401) {
-                            Notification({ message: 'Bạn không có quyền xóa thành viên' }, 'warning');
+                            Notification({ message: 'Bạn không có quyền xóa thành viên này' }, 'warning');
                         } else {
                             Notification({ message: 'Đã xóa người dùng' });
                             $scope.dtInstance.reloadData();
