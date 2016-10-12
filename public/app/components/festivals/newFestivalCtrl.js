@@ -89,11 +89,10 @@ app.controller('newFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'Upl
                 $scope.flag = false;
                 var inputTimeBegin = $('#timebeginEvent').val();
                 var inputTimeEnd = $('#timeendEvent').val();
-                if ($scope.nameEvent != undefined && $scope.descriptionEvent != undefined && timebeginEvent != '' && timeendEvent != '') {
+                if ($scope.nameEvent != undefined && $scope.nameEvent != '' && timebeginEvent != '' && timeendEvent != '') {
 
                     $scope.events.push({
                         'name': $scope.nameEvent,
-                        'description': $scope.descriptionEvent,
                         'timeBegin': inputTimeBegin,
                         'timeEnd': inputTimeEnd
                     });

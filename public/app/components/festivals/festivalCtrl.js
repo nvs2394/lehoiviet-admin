@@ -51,14 +51,14 @@ app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptions
             var iconIsPublic = isPublic == 1 ? 'ion-android-done' : 'ion-android-close';
             var isPinned = full.isPinned;
             var iconIsPined = isPinned == 1 ? 'ion-pin' : 'ion-minus-circled';
-            return '<button class="btn btn-default fa fa-edit"  ng-click="editFestival(\'' + data + '\')">' +
-                '<button class="btn btn-default fa fa-info-circle" data-toggle="tooltip" title="Detail" ng-click="detailFestival(\'' + data + '\')">' +
+            return '<button class="btn btn-default fa fa-edit btn-flat"  ng-click="editFestival(\'' + data + '\')">' +
+                '<button class="btn btn-default btn-flat fa fa-info-circle" data-toggle="tooltip" title="Detail" ng-click="detailFestival(\'' + data + '\')">' +
                 '</button>' +
-                '<button class="btn btn-default fa fa-trash-o" data-toggle="modal" data-tooltip="tooltip"="tooltip" title="Delete" data-target="#askDelete" ng-click="deleteFestival(\'' + data + '\',' + !status + ')">' +
+                '<button class="btn btn-default btn-flat fa fa-trash-o" data-toggle="modal" data-tooltip="tooltip"="tooltip" title="Delete" data-target="#askDelete" ng-click="deleteFestival(\'' + data + '\',' + !status + ')">' +
                 '</button>' +
-                '<button class="btn btn-default ion ' + iconIsPublic + ' " data-toggle="modal" data-toggle="tooltip" title="Pulic/Unpublic" data-target="#askPublic" ng-click="setPublicFestival(\'' + data + '\',' + !isPublic + ')">' +
+                '<button class="btn btn-default btn-flat ion ' + iconIsPublic + ' " data-toggle="modal" data-toggle="tooltip" title="Pulic/Unpublic" data-target="#askPublic" ng-click="setPublicFestival(\'' + data + '\',' + !isPublic + ')">' +
                 '</button>' +
-                '<button class="btn btn-default ion ' + iconIsPined + ' " data-toggle="modal" data-target="#askPinPost" data-toggle="tooltip" title="Pin/Unpin" ng-click="setPinPost(\'' + data + '\',' + !isPinned + ')">' +
+                '<button class="btn btn-default btn-flat ion ' + iconIsPined + ' " data-toggle="modal" data-target="#askPinPost" data-toggle="tooltip" title="Pin/Unpin" ng-click="setPinPost(\'' + data + '\',' + !isPinned + ')">' +
                 '</button>';
         }
 

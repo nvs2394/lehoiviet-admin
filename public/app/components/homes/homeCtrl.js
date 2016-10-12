@@ -49,7 +49,7 @@ app.controller('homeCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
             .withOption('bLengthChange', false)
         $scope.dtColumns = [
             DTColumnBuilder.newColumn('title').withTitle('Tên').renderWith(renderTitle),
-            DTColumnBuilder.newColumn('userId.name').withTitle('Người đăng'),
+            DTColumnBuilder.newColumn('userId.email').withTitle('Người đăng'),
             DTColumnBuilder.newColumn('createAt').withTitle('Ngày đăng').renderWith(renderDate),
             DTColumnBuilder.newColumn('_id').withTitle('Chọn').renderWith(getOnlyId)
         ];
@@ -75,7 +75,7 @@ app.controller('homeCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
         function getOnlyId(data, type, full, meta) {
             var status = full.isPublic;
             var icon = status == 1 ? 'ion-android-done text-yellow' : 'ion-android-close text-aqua';
-            return '<button class="btn btn-default ion ' + icon + ' " data-toggle="modal" data-target="#askPublic" ng-click="setPublicPost(\'' + data + '\',' + !status + ')">' +
+            return '<button class="btn btn-default btn-flat ion ' + icon + ' " data-toggle="modal" data-target="#askPublic" ng-click="setPublicPost(\'' + data + '\',' + !status + ')">' +
                 '</button>';
         }
 
@@ -113,7 +113,7 @@ app.controller('homeCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
         function pinPost(data, type, full, meta) {
             var status = full.isPinned;
             var icon = status == 1 ? 'ion-pin text-yellow' : 'ion-android-close text-aqua';
-            return '<button class="btn btn-default ion ' + icon + ' " data-toggle="modal" data-target="#askPinPost" ng-click="setPinPost(\'' + data + '\',' + !status + ')">' +
+            return '<button class="btn btn-default btn-flat ion ' + icon + ' " data-toggle="modal" data-target="#askPinPost" ng-click="setPinPost(\'' + data + '\',' + !status + ')">' +
                 '</button>';
         }
 

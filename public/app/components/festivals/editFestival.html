@@ -103,7 +103,7 @@
                                             <div class="thumnail">
                                                 <img class="img-responsive" ng-show="myForm.file.$valid" ngf-thumbnail="thumbnail">
                                             </div>
-                                            <button class="btn btn-danger" ng-click="thumbnail = null" ng-show="thumbnail">Xóa</button>
+                                            <button class="btn btn-danger flat" ng-click="thumbnail = null" ng-show="thumbnail">Xóa</button>
                                             <input class="form-control" type="file" ngf-select ng-model="thumbnail" name="file" accept="image/*" ngf-max-size="2MB" ngf-model-invalid="errorFile">
                                         </div>
                                     </div>
@@ -112,7 +112,7 @@
                                         <strong>Vui lòng điền đầy đủ thông tin!</strong>
                                     </div>
                                     <div class="pull-right ">
-                                        <button class="btn btn-primary " ng-click="updateFestival(thumbnail) "><i class="fa fa-floppy-o " aria-hidden="true "></i> Lưu lễ hội </button>
+                                        <button class="btn btn-primary flat" ng-click="updateFestival(thumbnail) "><i class="fa fa-floppy-o " aria-hidden="true "></i> Lưu lễ hội </button>
                                     </div>
                                 </form>
                             </div>
@@ -138,10 +138,6 @@
                             <input class="form-control" type="text" ng-model="nameEvent">
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Mô tả</label>
-                            <textarea class="form-control" ng-model="descriptionEvent"></textarea>
-                        </div>
-                        <div class="form-group">
                             <label class="control-label">Thời gian bắt đầu</label>
                             <div class='input-group date' id='datetimepicker3'>
                                 <input id="timebeginEvent" type='text' class="form-control" ng-model="timebeginEvent" />
@@ -163,8 +159,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="updateEvent()"><i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu sự kiện </button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary flat" data-dismiss="modal" ng-click="updateEvent()"><i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu sự kiện </button>
+                <button type="button" class="btn btn-default flat" data-dismiss="modal">Đóng</button>
             </div>
         </div>
     </div>
@@ -180,8 +176,8 @@
                 <p>Bạn có chắc chắn muốn xóa sự kiện này ?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deleteEvent()">Đồng ý</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary flat" data-dismiss="modal" ng-click="deleteEvent()">Đồng ý</button>
+                <button type="button" class="btn btn-default flat" data-dismiss="modal">Thoát</button>
             </div>
         </div>
     </div>
@@ -199,10 +195,6 @@
                         <div class="form-group">
                             <label class="control-label">Tên sự kiện</label>
                             <input class="form-control" type="text" ng-model="newNameEvent">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Mô tả</label>
-                            <textarea class="form-control" ng-model="newDescriptionEvent"></textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Thời gian bắt đầu</label>
@@ -226,8 +218,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addEvent()"><i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu sự kiện</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary btn-flat" data-dismiss="modal" ng-click="addEvent()"><i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu sự kiện</button>
+                <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Đóng</button>
             </div>
         </div>
     </div>

@@ -25,11 +25,15 @@ app.controller('userNewCtrl', ['$scope', '$http', '$state', 'ConfigService', 'No
                 url: host + '/user/create',
                 data: data
             }).then(function successCallback(response) {
-                if (response.data.data == 0) {
-                    Notification({ message: 'Email này đã tồn tại' }, 'warning');
+                if (response.data.statusCode == 401) {
+                    Notification({ message: 'Bạn không có quyền tạo tài khoản' }, 'warning');
                 } else {
-                    Notification({ message: 'Tạo tài khoản thành công' }, 'success');
-                    $state.go('home.user');
+                    if (response.data.data == 0) {
+                        Notification({ message: 'Email này đã tồn tại' }, 'warning');
+                    } else {
+                        Notification({ message: 'Tạo tài khoản thành công' }, 'success');
+                        $state.go('home.user');
+                    }
                 }
             }, function errorCallback(response) {});
         } else {

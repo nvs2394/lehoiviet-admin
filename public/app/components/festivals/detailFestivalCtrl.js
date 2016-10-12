@@ -52,7 +52,6 @@ app.controller('detailFestivalCtrl', ['$scope', '$http', '$state', '$timeout', '
             $http.get(host + '/event/show/' + eventId).then(function successCallback(response) {
                 var event = response.data.data;
                 $scope.nameEvent = event.name;
-                $scope.descriptionEvent = event.description;
                 var timebegin = new Date(event.timeBegin);
                 var timeend = new Date(event.timeEnd);
                 $scope.timebeginEvent = timebegin.toLocaleString();

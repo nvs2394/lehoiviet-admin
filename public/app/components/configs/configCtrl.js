@@ -1,6 +1,6 @@
 app.controller('configCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuilder', '$compile', '$filter',
-    'ConfigService',
-    function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, ConfigService) {
+    'ConfigService','Notification',
+    function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, ConfigService,Notification) {
 
         var host = ConfigService.host;
 
@@ -25,11 +25,7 @@ app.controller('configCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBu
         }
 
         function getOnlyId(data, type, full, meta) {
-            var status = full.active;
-            var isPublic = full.isPublic;
-            var icon = status == 1 ? 'fa-lock' : 'fa-unlock';
-            var iconIsPublic = isPublic == 1 ? 'ion-android-done' : 'ion-android-close';
-            return '<button class="btn btn-default fa fa-edit" data-toggle="modal" data-target="#editCategory"  ng-click="editCategory(\'' + data + '\')">' +
+            return '<button class="btn btn-default fa fa-edit btn-flat" data-toggle="modal" data-target="#editCategory"  ng-click="editCategory(\'' + data + '\')">' +
                 '</button>';
         }
 
@@ -47,36 +43,44 @@ app.controller('configCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBu
 
             });
             $scope.updateCategory = function() {
-                var data = {};
-                data.name = $scope.editName;
-                data.description = $scope.editDescription;
-                $http({
-                    method: "POST",
-                    url: host + '/category/update/' + categoryId,
-                    data: data
-                }).then(function successCallback(response) {
-                    $scope.dtInstance.reloadData();
-                }, function errorCallback(response) {
-
-                });
+                if ($scope.editName != undefined && $scope.editName != '' && $scope.editDescription != undefined && $scope.editDescription != '') {
+                    var data = {};
+                    data.name = $scope.editName;
+                    data.description = $scope.editDescription;
+                    $http({
+                        method: "POST",
+                        url: host + '/category/update/' + categoryId,
+                        data: data
+                    }).then(function successCallback(response) {
+                        $scope.dtInstance.reloadData();
+                        Notification({ message: 'Chỉnh sửa danh mục thành công' }, 'success');
+                    }, function errorCallback(response) {});
+                } else {
+                    Notification({ message: 'Vui lòng nhập đầy đủ thông tin' }, 'warning');
+                }
             }
         }
 
         $scope.addCategory = function() {
-            var name = $scope.name;
-            var description = $scope.description;
-            var data = {}
-            data.name = name;
-            data.description = description;
-            $http({
-                method: "POST",
-                url: host + '/category/create',
-                data: data
-            }).then(function successCallback(response) {
-                $scope.dtInstance.reloadData();
-            }, function errorCallback(response) {
+            if ($scope.name != undefined && $scope.name != '' && $scope.description != undefined && $scope.description != '') {
+                var name = $scope.name;
+                var description = $scope.description;
+                var data = {}
+                data.name = name;
+                data.description = description;
+                $http({
+                    method: "POST",
+                    url: host + '/category/create',
+                    data: data
+                }).then(function successCallback(response) {
+                    $scope.dtInstance.reloadData();
+                    Notification({ message: 'Thêm mới danh mục thành công' }, 'success');
+                }, function errorCallback(response) {
 
-            });
+                });
+            } else {
+                Notification({ message: 'Vui lòng nhập đầy đủ thông tin' }, 'warning');
+            }
         }
     }
 ]);

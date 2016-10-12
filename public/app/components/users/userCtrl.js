@@ -41,7 +41,7 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
             .withOption('bLengthChange', false)
             .withOption('order', [2, 'desc']);
         $scope.dtColumns = [
-            DTColumnBuilder.newColumn('email').withTitle('email'),
+            DTColumnBuilder.newColumn('email').withTitle('Email'),
             DTColumnBuilder.newColumn('role').withTitle('Vai trò').renderWith(renderRole),
             DTColumnBuilder.newColumn('createAt').withTitle('Ngày tạo').renderWith(renderDate),
             DTColumnBuilder.newColumn('_id').withTitle('Chọn').renderWith(getOnlyId)
@@ -66,11 +66,11 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
         function getOnlyId(data, type, full, meta) {
             var isActive = full.isActive;
             var icon = isActive == 1 ? 'fa-unlock-alt' : 'fa-lock';
-            return '<button class="btn btn-default fa fa-info-circle" ng-click="editUser(\'' + data + '\')">' +
+            return '<button class="btn btn-default fa fa-info-circle btn-flat" ng-click="editUser(\'' + data + '\')">' +
                 '</button>' +
-                '<button class="btn btn-default fa fa-trash-o" data-toggle="modal" data-target="#askDelete"  ng-click="deleteUser(\'' + data + '\',' + !status + ')">' +
+                '<button class="btn btn-default fa fa-trash-o btn-flat" data-toggle="modal" data-target="#askDelete"  ng-click="deleteUser(\'' + data + '\',' + !status + ')">' +
                 '</button>' +
-                '<button class="btn btn-default fa ' + icon + '" data-toggle="modal" data-target="#askInactive"  ng-click="isActive(\'' + data + '\',' + !isActive + ')">' +
+                '<button class="btn btn-default btn-flat fa ' + icon + '" data-toggle="modal" data-target="#askInactive"  ng-click="isActive(\'' + data + '\',' + !isActive + ')">' +
                 '</button>';
         }
         $scope.editUser = function(data) {
@@ -119,6 +119,7 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                     if (response.data.statusCode == 401) {
                         Notification({ message: 'Bạn không có quyền khóa tài khoản' }, 'warning');
                     } else {
+                        Notification({ message: 'Đã khóa tài khoản thành công' }, 'success');
                         $scope.dtInstance.reloadData();
                         $scope.countTotalUser();
                         $scope.getAdmin();
