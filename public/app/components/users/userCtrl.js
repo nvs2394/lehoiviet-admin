@@ -65,12 +65,13 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
 
         function getOnlyId(data, type, full, meta) {
             var isActive = full.isActive;
-            var icon = isActive == 1 ? 'fa-unlock-alt' : 'fa-lock';
-            return '<button class="btn btn-default fa fa-info-circle btn-flat" ng-click="editUser(\'' + data + '\')">' +
+            var icon = isActive == true ? 'fa-unlock-alt' : 'fa-lock';
+            var activeModal = isActive == false ? '#askPublic' : '#askInactive';
+            return '<button class="btn btn-default fa fa-pencil-square-o btn-flat" ng-click="editUser(\'' + data + '\')">' +
                 '</button>' +
                 '<button class="btn btn-default fa fa-trash-o btn-flat" data-toggle="modal" data-target="#askDelete"  ng-click="deleteUser(\'' + data + '\',' + !status + ')">' +
                 '</button>' +
-                '<button class="btn btn-default btn-flat fa ' + icon + '" data-toggle="modal" data-target="#askInactive"  ng-click="isActive(\'' + data + '\',' + !isActive + ')">' +
+                '<button class="btn btn-default btn-flat fa ' + icon + '" data-toggle="modal" data-target="' + activeModal + '"  ng-click="isActive(\'' + data + '\',' + !isActive + ')">' +
                 '</button>';
         }
         $scope.editUser = function(data) {
@@ -109,8 +110,7 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
             var userId = data;
             $scope.askInactiveUser = function() {
                 var data = {};
-                data.isActive = isActive;
-
+                data.time = $scope.time;
                 $http({
                     method: "POST",
                     url: host + '/user/inactive/' + userId,
@@ -119,7 +119,11 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                     if (response.data.statusCode == 401) {
                         Notification({ message: 'Bạn không có quyền khóa tài khoản' }, 'warning');
                     } else {
-                        Notification({ message: 'Đã khóa tài khoản thành công' }, 'success');
+                        if (response.data.data.code == 1) {
+                            Notification({ message: 'Đã khóa tài khoản thành công' }, 'success');
+                        } else {
+                            Notification({ message: 'Mở khóa tài khoản thành công' }, 'success');
+                        }
                         $scope.dtInstance.reloadData();
                         $scope.countTotalUser();
                         $scope.getAdmin();

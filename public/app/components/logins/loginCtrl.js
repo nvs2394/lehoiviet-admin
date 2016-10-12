@@ -26,6 +26,11 @@ app.controller('loginCtrl', ['$scope', '$rootScope', '$http', '$state', '$window
                             $scope.showMessage = true;
                             return $state.go('login');
                         }
+                        if (data.message.code ==4) {
+                            $scope.message = 'Tài khoản của bạn đang bị khóa';
+                            $scope.showMessage = true;
+                            return $state.go('login');
+                        }
                     } else {
                         $http.defaults.headers.common['Authorization'] = $window.localStorage.token;
                         $window.localStorage.loggedUser = angular.toJson(data.user);

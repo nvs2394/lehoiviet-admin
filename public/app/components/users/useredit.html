@@ -27,7 +27,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Vai trò</label>
-                        <select class="form-control" ng-model="roleId" disabled>
+                        <select class="form-control" ng-model="roleId">
                             <option value="{{role.id}}" ng-repeat="role in allRoles">{{role.name}}</option>
                         </select>
                     </div>
@@ -39,9 +39,9 @@
                         <label>Giới thiệu</label>
                         <textarea rows="10" type="text" class="form-control" ng-model="description" disabled></textarea>
                     </div>
-                    <!-- <div class="pull-right">
+                    <div class="pull-right">
                         <button class="btn btn-primary" ng-click="updateUser()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu chỉnh sửa</button>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
