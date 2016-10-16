@@ -103,7 +103,7 @@ app.controller('homeCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
             .withOption('bLengthChange', false);
         $scope.dtColumnsPinPost = [
             DTColumnBuilder.newColumn('title').withTitle('Tên').renderWith(renderTitle),
-            DTColumnBuilder.newColumn('userId.name').withTitle('Người đăng'),
+            DTColumnBuilder.newColumn('userId.email').withTitle('Người đăng'),
             DTColumnBuilder.newColumn('createAt').withTitle('Ngày đăng').renderWith(renderDate),
             DTColumnBuilder.newColumn('_id').withTitle('Chọn').renderWith(pinPost)
         ];
