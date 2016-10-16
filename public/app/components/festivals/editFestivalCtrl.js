@@ -1,6 +1,9 @@
 "use strict";
-app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'Notification', 'Upload', 'ConfigService',
-    function($scope, $http, $state, $timeout, Notification, Upload, ConfigService) {
+app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'Notification', 'Upload', 'ConfigService', 'ngProgressFactory',
+    function($scope, $http, $state, $timeout, Notification, Upload, ConfigService, ngProgressFactory) {
+        $scope.progressbar = ngProgressFactory.createInstance();
+        $scope.progressbar.start();
+
         var host = ConfigService.host;
         var hostImage = ConfigService.hostImage;
         var festivalId = $state.params.festivalId;
@@ -48,6 +51,7 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
             $("#datetimepicker2").datetimepicker();
             $http.get(host + '/event/list/' + data._id).then(function successCallback(response) {
                 $scope.events = response.data.data;
+                $scope.progressbar.complete();
             })
         }, function errorCallback(response) {
 
@@ -111,10 +115,12 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
                         $state.go('home.festival');
                     }, 200);
 
+                    $scope.progressbar.complete();
+
                 } else if (response.data.data.code == 2) {
                     Notification({ message: 'Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc' }, 'warning');
                 }
-            }, function errorCallback(response) {});
+            });
         }
 
         $scope.editEvent = function(id) {
@@ -129,7 +135,7 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
                 $("#datetimepicker4").datetimepicker();
             });
             $scope.updateEvent = function() {
-                if ($scope.nameEvent!=undefined &&$scope.nameEvent!='') {
+                if ($scope.nameEvent != undefined && $scope.nameEvent != '') {
                     var inputTimeBegin = $('#timebeginEvent').val();
                     var inputTimeEnd = $('#timeendEvent').val();
                     if (inputTimeBegin < inputTimeEnd) {
@@ -142,15 +148,16 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
                             url: host + "/event/update/" + id,
                             data: event
                         }).then(function successCallback(response) {
-                            $http.get(host + '/event/list/' + response.data.data.festivalId).then(function successCallback(response) {
-                                $scope.events = response.data.data;
-                            })
                             Notification({ message: 'Chỉnh sửa sự kiện thành công' }, 'Success');
+                            $http.get(host + '/event/list/' + festivalId).then(function successCallback(response) {
+                                $scope.events = response.data.data;
+                                $scope.progressbar.complete();
+                            })
                         }, function errorCallback(response) {});
                     } else {
                         Notification({ message: 'Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc' }, 'warning');
                     }
-                }else{
+                } else {
                     Notification({ message: 'Vui lòng điền đầy đủ thông tin' }, 'warning');
                 }
             }
@@ -165,6 +172,7 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
                 }).then(function successCallback(response) {
                     $http.get(host + '/event/list/' + festivalId).then(function successCallback(response) {
                         $scope.events = response.data.data;
+                        $scope.progressbar.complete();
                         Notification({ message: 'Đã xóa sự kiện' }, 'Success');
                     })
                 }, function errorCallback(response) {});
@@ -186,9 +194,10 @@ app.controller('editFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'No
                         url: host + "/event/create/" + festivalId,
                         data: event
                     }).then(function successCallback(response) {
-                        $http.get(host + '/event/list/' + response.data.data.festivalId).then(function successCallback(response) {
+                        $http.get(host + '/event/list/' + festivalId).then(function successCallback(response) {
                             $scope.events = response.data.data;
                         })
+                        $scope.progressbar.complete();
                         Notification({ message: 'Thêm sự kiện thành công' }, 'Success');
                     }, function errorCallback(response) {});
                 } else {

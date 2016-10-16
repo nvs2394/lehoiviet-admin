@@ -1,7 +1,11 @@
 app.controller('configCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuilder', '$compile', '$filter',
-    'ConfigService','Notification',
-    function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, ConfigService,Notification) {
-
+    'ConfigService', 'Notification', 'ngProgressFactory', '$timeout',
+    function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, ConfigService, Notification, ngProgressFactory, $timeout) {
+        $scope.progressbar = ngProgressFactory.createInstance();
+        $scope.progressbar.start();
+        $timeout(function() {
+            $scope.progressbar.complete();
+        }, 1000)
         var host = ConfigService.host;
 
         /*all categories show to datatables*/
@@ -54,6 +58,7 @@ app.controller('configCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBu
                     }).then(function successCallback(response) {
                         $scope.dtInstance.reloadData();
                         Notification({ message: 'Chỉnh sửa danh mục thành công' }, 'success');
+                        $scope.progressbar.complete();
                     }, function errorCallback(response) {});
                 } else {
                     Notification({ message: 'Vui lòng nhập đầy đủ thông tin' }, 'warning');
@@ -75,6 +80,7 @@ app.controller('configCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBu
                 }).then(function successCallback(response) {
                     $scope.dtInstance.reloadData();
                     Notification({ message: 'Thêm mới danh mục thành công' }, 'success');
+                    $scope.progressbar.complete();
                 }, function errorCallback(response) {
 
                 });

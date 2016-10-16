@@ -1,6 +1,6 @@
 'use strict';
 var app = angular.module('LehoivietAdmin', ['ui.router', 'datatables', 'chart.js',
-    'ngCookies', 'ngFileUpload', 'ui-notification', 'validation.match'
+    'ngCookies', 'ngFileUpload', 'ui-notification', 'validation.match','ngProgress'
 ]);
 
 

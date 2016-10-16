@@ -1,11 +1,14 @@
 "use strict";
 app.controller('homeCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuilder', '$compile',
-    '$filter', '$window', 'ConfigService',
-    function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, $window, ConfigService) {
+    '$filter', '$window', 'ConfigService', 'ngProgressFactory', '$timeout',
+    function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, $window, ConfigService, ngProgressFactory, $timeout) {
+        $scope.progressbar = ngProgressFactory.createInstance();
+        $scope.progressbar.start();
 
         var host = ConfigService.host;
         $http.get(host + '/comment/count/festival').then(function success(response) {
             $scope.totalCommentPost = response.data.data;
+            $timeout($scope.progressbar.complete(), 1000);
         }, function error(response) {
 
         });
@@ -87,6 +90,7 @@ app.controller('homeCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                         method: "POST"
                     })
                     .then(function success(response) {
+                        $timeout($scope.progressbar.complete(), 1000);
                         $scope.dtInstance.reloadData();
                     }, function error(response) {
 
@@ -124,10 +128,11 @@ app.controller('homeCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                 var festivalId = data;
                 $http.get({
                         url: host + '/festival/pin/set/' + festivalId + '/' + userId,
-                        method: POST
+                        method: "POST"
                     })
                     .then(function success(response) {
                         $scope.dtInstancePinPost.reloadData();
+                        $timeout($scope.progressbar.complete(), 1000);
                     }, function error(response) {
 
                     });

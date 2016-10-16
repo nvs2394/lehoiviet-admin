@@ -1,8 +1,9 @@
 "use strict";
-app.controller('profileCtrl', ['$scope', '$http', '$state', 'Notification', 'ConfigService', '$timeout',
-    function($scope, $http, $state, Notification, ConfigService, $timeout) {
+app.controller('profileCtrl', ['$scope', '$http', '$state', 'Notification', 'ConfigService', '$timeout','ngProgressFactory',
+    function($scope, $http, $state, Notification, ConfigService, $timeout,ngProgressFactory) {
         var host = ConfigService.host;
-
+        $scope.progressbar = ngProgressFactory.createInstance();
+        $scope.progressbar.start();
         var userId = $state.params.userId;
         $scope.isDisableInput = true;
         $scope.isEdit = true;
@@ -33,6 +34,7 @@ app.controller('profileCtrl', ['$scope', '$http', '$state', 'Notification', 'Con
                     data: data
                 }).then(function successCallback(response) {
                     Notification('Cập nhật thông tin thành công');
+                    $scope.progressbar.complete();
                     $state.go('home.profile');
                 }, function errorCallback(response) {
 
@@ -55,6 +57,7 @@ app.controller('profileCtrl', ['$scope', '$http', '$state', 'Notification', 'Con
                     $scope.gender = user.gender.toString();
                 }
                 $scope.description = user.description;
+                $scope.progressbar.complete();
             });
 
         $scope.changePassword = function() {
@@ -67,6 +70,7 @@ app.controller('profileCtrl', ['$scope', '$http', '$state', 'Notification', 'Con
                     url: host + '/user/password/change/' + userId,
                     data: data
                 }).then(function successCallback(response) {
+                    $scope.progressbar.complete();
                     if (response.data.success == false) {
                         Notification({ message: 'Mật khẩu cũ không đúng' }, 'warning');
                     } else {

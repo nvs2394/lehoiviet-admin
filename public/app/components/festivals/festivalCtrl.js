@@ -1,7 +1,9 @@
 "use strict";
 app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuilder', '$compile',
-    '$filter', '$state', '$timeout', 'ConfigService',
-    function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, $state, $timeout, ConfigService) {
+    '$filter', '$state', '$timeout', 'ConfigService','ngProgressFactory',
+    function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, $state, $timeout, ConfigService,ngProgressFactory) {
+        $scope.progressbar = ngProgressFactory.createInstance();
+        $scope.progressbar.start();
 
         var host = ConfigService.host;
 
@@ -77,6 +79,7 @@ app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptions
                     method: "DELETE",
                     url: host + '/festival/delete/' + festivalId
                 }).then(function successCallback(response) {
+                    $timeout($scope.progressbar.complete(), 1000);
                     $scope.dtInstance.reloadData();
                     $scope.countFestivalPublic();
                     $scope.countFestival();
@@ -94,6 +97,7 @@ app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptions
                         method: "POST"
                     })
                     .then(function success(response) {
+                        $timeout($scope.progressbar.complete(), 1000);
                         $scope.dtInstance.reloadData();
                     }, function error(response) {
 
@@ -108,6 +112,7 @@ app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptions
                 var festivalId = data;
                 $http.post(host + '/festival/pin/set/' + festivalId)
                     .then(function success(response) {
+                        $timeout($scope.progressbar.complete(), 1000);
                         $scope.dtInstance.reloadData();
                     }, function error(response) {
 
@@ -123,6 +128,7 @@ app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptions
 
         $scope.countFestivalPublic = function() {
             $http.get(host + '/festival/count/ispublic').then(function success(response) {
+                $timeout($scope.progressbar.complete(), 1000);
                 $scope.festivalPublic = response.data.data;
             });
         };

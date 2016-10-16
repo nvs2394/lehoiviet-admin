@@ -1,8 +1,11 @@
 "use strict";
-app.controller('statictisCtrl', ['$scope', '$http', 'ConfigService', function($scope, $http, ConfigService) {
+app.controller('statictisCtrl', ['$scope', '$http', 'ConfigService', 'ngProgressFactory', function($scope, $http, ConfigService, ngProgressFactory) {
     var host = ConfigService.host;
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();
     $scope.chartFestival = function() {
         $http.get(host + '/festival/count/bydate').then(function success(response) {
+            $scope.progressbar.complete();
             var data = [];
             var labels = [];
             for (var i = 0; i < response.data.data.length; i++) {

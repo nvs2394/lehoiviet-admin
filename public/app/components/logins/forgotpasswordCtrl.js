@@ -1,8 +1,11 @@
 'use strict';
-app.controller('forgotpasswordCtrl', ['$scope', '$http', 'ConfigService',
-    function($scope, $http, ConfigService) {
+app.controller('forgotpasswordCtrl', ['$scope', '$http', 'ConfigService', 'ngProgressFactory',
+    function($scope, $http, ConfigService, ngProgressFactory) {
+        $scope.progressbar = ngProgressFactory.createInstance();
+
         var host = ConfigService.host;
         $scope.emailPasswd = function() {
+            $scope.progressbar.start();
             var data = {};
             data.email = $scope.email;
             if ($scope.email != undefined && $scope.email != '') {
@@ -11,6 +14,7 @@ app.controller('forgotpasswordCtrl', ['$scope', '$http', 'ConfigService',
                     url: host + '/user/password/forgot',
                     data: data
                 }).then(function successCallback(response) {
+                    $scope.progressbar.complete();
                     $scope.rememberEmail = false;
                     if (response.data.data.code == 0) {
                         $scope.errFalse = true;

@@ -1,9 +1,10 @@
 "use strict";
-app.controller('userEditCtrl', ['$scope', '$http', '$state', 'ConfigService', 'Notification',
-    function($scope, $http, $state, ConfigService, Notification) {
+app.controller('userEditCtrl', ['$scope', '$http', '$state', 'ConfigService', 'Notification', 'ngProgressFactory',
+    function($scope, $http, $state, ConfigService, Notification, ngProgressFactory) {
         var userId = $state.params.userId;
         var host = ConfigService.host;
-
+        $scope.progressbar = ngProgressFactory.createInstance();
+        $scope.progressbar.start();
 
         $http.get(host + '/user/role/lists').then(function success(response) {
             $scope.allRoles = response.data.data;
@@ -17,6 +18,7 @@ app.controller('userEditCtrl', ['$scope', '$http', '$state', 'ConfigService', 'N
                 $scope.company = response.data.data.company;
                 $scope.roleId = response.data.data.role.toString();
                 $scope.description = response.data.data.description;
+                $scope.progressbar.complete();
             });
 
         $scope.updateUser = function() {
@@ -27,10 +29,11 @@ app.controller('userEditCtrl', ['$scope', '$http', '$state', 'ConfigService', 'N
                 url: host + '/user/updateUserAdmin/' + userId,
                 data: data
             }).then(function successCallback(response) {
+                $scope.progressbar.complete();
                 if (response.data.statusCode == 401) {
                     Notification({ message: 'Bạn không có quyền' }, 'warning');
                 } else {
-                    Notification({ message: 'Đã thiết lập quyền thành công' }, 'warning');
+                    Notification({ message: 'Đã thiết lập quyền thành công' });
                     $state.go('home.user');
                 }
             }, function errorCallback(response) {

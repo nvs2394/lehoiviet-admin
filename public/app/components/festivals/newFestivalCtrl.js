@@ -1,8 +1,10 @@
 "use strict";
-app.controller('newFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'Upload', 'Notification', 'ConfigService',
-    function($scope, $http, $state, $timeout, Upload, Notification, ConfigService) {
+app.controller('newFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'Upload', 'Notification', 'ConfigService', 'ngProgressFactory',
+    function($scope, $http, $state, $timeout, Upload, Notification, ConfigService, ngProgressFactory) {
         $scope.flag = true;
         var host = ConfigService.host;
+        $scope.progressbar = ngProgressFactory.createInstance();
+        $scope.progressbar.start();
 
         $scope.isShowAddEvent = true;
         $scope.events = [];
@@ -14,6 +16,7 @@ app.controller('newFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'Upl
             $("#datetimepicker4").datetimepicker();
         }, 100)
         $http.get(host + '/province/lists').then(function success(response) {
+            $timeout($scope.progressbar.complete(), 1000);
             $scope.allProvinces = response.data.data;
         });
 
@@ -63,6 +66,7 @@ app.controller('newFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'Upl
                                 url: host + '/festival/create',
                                 data: festivalInfo
                             }).then(function successCallback(response) {
+                                $timeout($scope.progressbar.complete(), 1000);
                                 Notification('Tạo lễ hội thành công');
                                 $timeout(function() {
                                     $state.go('home.festival');
@@ -96,7 +100,7 @@ app.controller('newFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'Upl
                         'timeBegin': inputTimeBegin,
                         'timeEnd': inputTimeEnd
                     });
-
+                    $timeout($scope.progressbar.complete(), 1000);
                 } else {
                     Notification({ message: 'Vui lòng điền đầy đủ thông tin' }, 'warning');
                 }
@@ -105,6 +109,7 @@ app.controller('newFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'Upl
 
         $scope.askDeleteEvent = function(index) {
             $scope.events.splice(index, 1);
+            $timeout($scope.progressbar.complete(), 1000);
         }
     }
 ]);

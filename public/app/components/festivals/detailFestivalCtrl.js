@@ -1,7 +1,9 @@
 "use strict";
-app.controller('detailFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'ConfigService',
+app.controller('detailFestivalCtrl', ['$scope', '$http', '$state', '$timeout', 'ConfigService', 'ngProgressFactory',
 
-    function($scope, $http, $state, $timeout, ConfigService) {
+    function($scope, $http, $state, $timeout, ConfigService, ngProgressFactory) {
+        $scope.progressbar = ngProgressFactory.createInstance();
+        $scope.progressbar.start();
         var host = ConfigService.host;
         var hostImage = ConfigService.hostImage;
 
@@ -40,6 +42,7 @@ app.controller('detailFestivalCtrl', ['$scope', '$http', '$state', '$timeout', '
             $scope.timebegin = timeBegin.toLocaleString();
             var timeEnd = new Date(data.timeEnd);
             $scope.timeend = timeEnd.toLocaleString();
+            $scope.progressbar.complete();
         }, function errorCallback(response) {
 
         });

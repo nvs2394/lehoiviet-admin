@@ -1,8 +1,9 @@
 "use strict";
 app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuilder', '$compile', '$filter', '$state',
-    'ConfigService', 'Notification',
-
-    function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, $state, ConfigService, Notification) {
+    'ConfigService', 'Notification', 'ngProgressFactory',
+    function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, $state, ConfigService, Notification, ngProgressFactory) {
+        $scope.progressbar = ngProgressFactory.createInstance();
+        $scope.progressbar.start();
         var host = ConfigService.host;
 
         $scope.getAllRole = function() {
@@ -14,6 +15,7 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
         $scope.countTotalUser = function() {
             $http.get(host + '/user/total').then(function success(response) {
                 $scope.totalUser = response.data.data;
+                $scope.progressbar.complete();
             })
         }
 
@@ -85,6 +87,7 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                     method: "DELETE",
                     url: host + '/user/delete/' + userId
                 }).then(function successCallback(response) {
+                    $scope.progressbar.complete();
                     if (response.data.data.code == 0) {
                         Notification({ message: 'Không thể xóa tài khoản của bạn' }, 'warning');
                     } else if (response.data.data.code == 2) {
@@ -116,6 +119,7 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                     url: host + '/user/inactive/' + userId,
                     data: data
                 }).then(function successCallback(response) {
+                    $scope.progressbar.complete();
                     if (response.data.statusCode == 401) {
                         Notification({ message: 'Bạn không có quyền khóa tài khoản' }, 'warning');
                     } else {
