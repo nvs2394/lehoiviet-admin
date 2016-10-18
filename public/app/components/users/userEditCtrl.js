@@ -29,13 +29,15 @@ app.controller('userEditCtrl', ['$scope', '$http', '$state', 'ConfigService', 'N
                 url: host + '/user/updateUserAdmin/' + userId,
                 data: data
             }).then(function successCallback(response) {
-                $scope.progressbar.complete();
+                console.log(response.data);
                 if (response.data.statusCode == 401) {
                     Notification({ message: 'Bạn không có quyền' }, 'warning');
                 } else {
                     Notification({ message: 'Đã thiết lập quyền thành công' });
                     $state.go('home.user');
                 }
+                $scope.progressbar.complete();
+
             }, function errorCallback(response) {
 
             });

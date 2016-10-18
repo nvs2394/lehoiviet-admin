@@ -122,6 +122,8 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                     $scope.progressbar.complete();
                     if (response.data.statusCode == 401) {
                         Notification({ message: 'Bạn không có quyền khóa tài khoản' }, 'warning');
+                    }else if(response.data.data.code==0){
+                        Notification({ message: 'Bạn không thể khóa chính bạn' }, 'warning');
                     } else {
                         if (response.data.data.code == 1) {
                             Notification({ message: 'Đã khóa tài khoản thành công' }, 'success');
