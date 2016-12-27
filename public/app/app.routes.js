@@ -7,6 +7,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
         }
     }, function($transition$, $state, userService) {
         if (userService.isLogin()) {
+
         } else {
             return $state.go('login');
         }
@@ -201,15 +202,25 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
                 }
             }
         })
+        .state('home.approve-live', {
+            url: 'approve-live',
+            views: {
+                'content@': {
+                    templateUrl: 'public/app/components/lives/live.html',
+                    controller: 'liveCtrl'
+                }
+            },
+            permission: [3]
+        })
 });
 
-app.controller('leftMenuController', ['$scope','$window', function($scope,$window) {
+app.controller('leftMenuController', ['$scope', '$window', function($scope, $window) {
     $scope.loggedUser = angular.fromJson($window.localStorage.loggedUser);
 }])
 
-app.controller('HeaderController', function($scope,$window,loginService,$state) {
+app.controller('HeaderController', function($scope, $window, loginService, $state) {
     $scope.loggedUser = angular.fromJson($window.localStorage.loggedUser);
-    $scope.logout = function(){
+    $scope.logout = function() {
         loginService.logout();
     }
 });

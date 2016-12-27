@@ -115,7 +115,7 @@
                     <div class="box-body no-padding">
                         <ul class="users-list clearfix">
                             <li ng-repeat="member in topMembers">
-                                <img ng-src="http://lehoiviet.herokuapp.com/{{member.avatar}}" alt="User Image">
+                                <img ng-src="{{member.avatar}}" alt="User Image">
                                 <a class="users-list-name" ui-sref="home.profile({userId:{{member._id}}})">{{member.lastName}} {{member.firstName}}</a>
                                 <span class="users-list-date">{{member.statistic.countpost}}</span>
                             </li>

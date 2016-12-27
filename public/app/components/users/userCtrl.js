@@ -52,17 +52,21 @@ app.controller('userCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
         $scope.dtInstance = {};
 
         function renderRole(data) {
+            console.log(data)
             if (data == 1) {
                 return '<span class="badge bg-yellow">Quản trị viên</span>';
             } else if (data == 2) {
                 return '<span class="badge bg-light-blue">Người điều hành</span>';
-            } else {
+            } else if(data==3){
+                return '<span class="badge bg-green">Tổ chức</span>';
+            }
+            else if(data ==5) {
                 return '<span class="badge bg-light-aqua">Người dùng</span>';
             }
         }
 
         function renderDate(data) {
-            return $filter('date')(new Date(data), "dd MMM yyyy HH:mm:ss");
+            return $filter('date')(new Date(data), "dd MMM yyyy");
         }
 
         function getOnlyId(data, type, full, meta) {

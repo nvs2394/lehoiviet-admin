@@ -4,6 +4,9 @@ app.service('userService', function($window) {
     this.isLogin = function() {
         return $window.localStorage.loggedUser == undefined ? false : true;
     };
+    this.listAccessPage = function(){
+        
+    }
 });
 
 app.service('loginService', ['$http', '$window', '$state', '$q','ConfigService', function($http, $window, $state, $q,ConfigService) {

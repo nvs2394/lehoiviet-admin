@@ -1,0 +1,46 @@
+<style type="text/css">
+.avatar-stream {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+</style>
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Danh sách Trực tiếp</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered table-hover" width="100%" datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance">
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+</div>
+<div class="modal fade" id="approve-live" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Duyệt đăng kí trực tiếp</h4>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li ng-repeat="user in allPending">
+                        <img class="avatar-stream" src="{{user.userId.avatar}}">
+                        <strong>{{user.userId.lastName}} {{user.userId.firstName}}</strong>
+                        <br>
+                        <i ng-click="changeStatusApprove(user.userId._id,!user.status)" ng-class="{'fa fa-check-circle-o bg-yellow':user.status==true , 'fa fa-ban':user.status==false}"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

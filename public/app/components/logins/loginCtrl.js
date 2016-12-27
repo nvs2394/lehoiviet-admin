@@ -37,7 +37,13 @@ app.controller('loginCtrl', ['$scope', '$rootScope', '$http', '$state', '$window
                         } else {
                             $http.defaults.headers.common['Authorization'] = $window.localStorage.token;
                             $window.localStorage.loggedUser = angular.toJson(data.user);
-                            $state.go('home.index');
+                            $rootScope.uid = (angular.fromJson($window.localStorage.loggedUser)._id)
+                            console.log($rootScope.uid)
+                            if (data.user.role == 3) {
+                                $state.go('home.approve-live');
+                            } else {
+                                $state.go('home.index');
+                            }
                         }
                     } else {
                         $scope.message = 'Đăng nhập không thành công';
