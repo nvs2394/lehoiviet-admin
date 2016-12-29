@@ -5,10 +5,11 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
         to: function(state) {
             return state.requireAuthen === undefined ? true : false;
         }
-    }, function($transition$, $state, userService) {
-        if (userService.isLogin()) {
-
-        } else {
+    }, function($transition$, $state, userService, $window, $location) {
+        var roleID = angular.fromJson($window.localStorage.loggedUser).role;
+        var url = $transition$.to().name;
+        var listAccessForRole3 = ['home.approve-live', 'login', 'home.profile.changepassword', 'forgotpassword', 'home.profile'];
+        if (roleID === 3 && listAccessForRole3.indexOf(url) === -1) {
             return $state.go('login');
         }
 
@@ -216,6 +217,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
 
 app.controller('leftMenuController', ['$scope', '$window', function($scope, $window) {
     $scope.loggedUser = angular.fromJson($window.localStorage.loggedUser);
+    $scope.roleID = $scope.loggedUser.role;
 }])
 
 app.controller('HeaderController', function($scope, $window, loginService, $state) {
