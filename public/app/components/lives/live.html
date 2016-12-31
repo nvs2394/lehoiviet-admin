@@ -4,6 +4,15 @@
     height: 50px;
     border-radius: 50%;
 }
+.ask-approve ul{
+    list-style: none;
+}
+
+.ask-approve ul li i{
+    margin-left: 10px;
+    cursor: pointer;
+}
+
 </style>
 <div class="content-wrapper">
     <div class="row">
@@ -28,13 +37,12 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Duyệt đăng kí trực tiếp</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body ask-approve">
                 <ul>
                     <li ng-repeat="user in allPending">
                         <img class="avatar-stream" src="{{user.userId.avatar}}">
                         <strong>{{user.userId.lastName}} {{user.userId.firstName}}</strong>
-                        <br>
-                        <i ng-click="changeStatusApprove(user.userId._id,!user.status)" ng-class="{'fa fa-check-circle-o bg-yellow':user.status==true , 'fa fa-ban':user.status==false}"></i>
+                       <i ng-click="changeStatusApprove(user.userId._id,!user.status)" ng-class="{'fa fa-check-circle-o bg-yellow':user.status==true , 'fa fa-ban':user.status==false}"></i>
                     </li>
                 </ul>
             </div>
