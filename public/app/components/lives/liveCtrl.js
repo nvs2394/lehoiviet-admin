@@ -28,7 +28,8 @@ app.controller('liveCtrl', ['$scope', '$rootScope', '$http', 'DTColumnBuilder', 
 
         function getOnlyId(data, type, full, meta) {
             return '<button class="btn btn-default fa fa-video-camera" data-toggle="modal" data-target="#approve-live"  ng-click="approveUserLive(\'' + data + '\')">' +
-                '</button>';
+                '</button>'+
+                '<button class="btn btn-default fa fa-info-circle" data-toggle="tooltip" title="Detail" ng-click="detailFestival(\'' + data + '\')">';
         }
 
         function renderStatus(data) {
