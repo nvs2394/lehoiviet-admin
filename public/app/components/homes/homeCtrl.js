@@ -1,7 +1,7 @@
 "use strict";
 app.controller('homeCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuilder', '$compile',
-    '$filter', '$window', 'ConfigService', 'ngProgressFactory', '$timeout',
-    function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, $window, ConfigService, ngProgressFactory, $timeout) {
+    '$filter', '$window', 'ConfigService', 'ngProgressFactory', '$timeout','$state',
+    function($scope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, $window, ConfigService, ngProgressFactory, $timeout,$state) {
         $scope.progressbar = ngProgressFactory.createInstance();
         $scope.progressbar.start();
 
@@ -79,7 +79,8 @@ app.controller('homeCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
             var status = full.isPublic;
             var icon = status == 1 ? 'ion-android-done text-yellow' : 'ion-android-close text-aqua';
             return '<button class="btn btn-default btn-flat ion ' + icon + ' " data-toggle="modal" data-target="#askPublic" ng-click="setPublicPost(\'' + data + '\',' + !status + ')">' +
-                '</button>';
+                '</button>'+
+                '<button class="btn btn-default btn-flat fa fa-info-circle" data-toggle="tooltip" title="Detail" ng-click="detailFestival(\'' + data + '\')">';
         }
 
         $scope.setPublicPost = function(data, status) {
@@ -97,6 +98,10 @@ app.controller('homeCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptionsBuil
                     });
             }
 
+        }
+
+        $scope.detailFestival = function(festivalId){
+            $state.go('home.festival.detail', { festivalId: festivalId });
         }
 
         /*all festival show to datatables*/
