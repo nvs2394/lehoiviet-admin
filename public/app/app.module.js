@@ -6,10 +6,10 @@ var app = angular.module('LehoivietAdmin', ['ui.router', 'datatables', 'chart.js
 
 app.factory('ConfigService', [function() {
     return {
-        host: 'https://api.lehoiviet.vn',
-        // host: 'http://api.lehoiviet.vn',
-        // hostImage: 'http://api.lehoiviet.vn'
-        hostImage:'https://api.lehoiviet.vn'
+        //host: 'http://127.0.0.1:3000',
+        host: 'http://api.lehoiviet.vn',
+        hostImage: 'http://api.lehoiviet.vn'
+        //hostImage:'http://127.0.0.1:3000'
 
     };
 }]);

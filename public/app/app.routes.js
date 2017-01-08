@@ -8,7 +8,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
     }, function($transition$, $state, userService, $window, $location) {
         var roleID = angular.fromJson($window.localStorage.loggedUser).role;
         var url = $transition$.to().name;
-        var listAccessForRole3 = ['home.approve-live', 'login', 'home.profile.changepassword', 'forgotpassword', 'home.profile'];
+        var listAccessForRole3 = ['home.approve-live', 'login', 'home.profile.changepassword', 'forgotpassword', 'home.profile','home.festival.detail'];
         if (roleID === 3 && listAccessForRole3.indexOf(url) === -1) {
             return $state.go('login');
         }

@@ -37,11 +37,6 @@ app.controller('detailFestivalCtrl', ['$scope', '$http', '$state', '$timeout', '
             $scope.district = data.address.district;
             var datecreated = new Date(data.createAt);
             $scope.datecreated = datecreated.toLocaleString();
-
-            var timeBegin = new Date(data.timeBegin);
-            $scope.timebegin = timeBegin.toLocaleString();
-            var timeEnd = new Date(data.timeEnd);
-            $scope.timeend = timeEnd.toLocaleString();
             $scope.progressbar.complete();
         }, function errorCallback(response) {
 
@@ -55,12 +50,26 @@ app.controller('detailFestivalCtrl', ['$scope', '$http', '$state', '$timeout', '
             $http.get(host + '/event/show/' + eventId).then(function successCallback(response) {
                 var event = response.data.data;
                 $scope.nameEvent = event.name;
-                var timebegin = new Date(event.timeBegin);
-                var timeend = new Date(event.timeEnd);
-                $scope.timebeginEvent = timebegin.toLocaleString();
-                $scope.timeendEvent = timeend.toLocaleString();
-                $("#datetimepicker3").datetimepicker();
-                $("#datetimepicker4").datetimepicker();
+                var datebegin = event.dateBegin;
+                var dateend = event.dateEnd;
+                $scope.datebeginEvent = datebegin;
+                $scope.dateendEvent = dateend;
+                $scope.timebeginEvent = event.timeBegin;
+                $scope.timeendEvent = event.timeEnd;
+
+                $("#datetimepicker2").datetimepicker({
+                    format: 'LT'
+                })
+                $("#datetimepicker4").datetimepicker({
+                    format: 'LT'
+                })
+
+                $("#datetimepicker1").datetimepicker({
+                    format: 'DD/MM/YYYY'
+                });
+                $("#datetimepicker3").datetimepicker({
+                    format: 'DD/MM/YYYY'
+                });
             });
         }
     }

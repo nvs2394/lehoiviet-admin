@@ -76,8 +76,8 @@ app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptions
             $scope.askDelete = function() {
                 var festivalId = data;
                 $http({
-                    method: "DELETE",
-                    url: host + '/festival/delete/' + festivalId
+                    method: "POST",
+                    url: host + '/festival/delete/admin/' + festivalId
                 }).then(function successCallback(response) {
                     $timeout($scope.progressbar.complete(), 1000);
                     $scope.dtInstance.reloadData();
@@ -104,8 +104,6 @@ app.controller('festivalCtrl', ['$scope', '$http', 'DTColumnBuilder', 'DTOptions
                     });
             }
         }
-
-
 
         $scope.setPinPost = function(data) {
             $scope.isPinned = function() {

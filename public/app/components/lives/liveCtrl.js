@@ -1,6 +1,6 @@
 app.controller('liveCtrl', ['$scope', '$rootScope', '$http', 'DTColumnBuilder', 'DTOptionsBuilder',
-    '$compile', '$filter', 'ConfigService', '$window',
-    function($scope, $rootScope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, ConfigService, $window) {
+    '$compile', '$filter', 'ConfigService', '$window','$state',
+    function($scope, $rootScope, $http, DTColumnBuilder, DTOptionsBuilder, $compile, $filter, ConfigService, $window,$state) {
         var host = ConfigService.host;
 
         var userId = angular.fromJson($window.localStorage.loggedUser)._id;
@@ -22,13 +22,9 @@ app.controller('liveCtrl', ['$scope', '$rootScope', '$http', 'DTColumnBuilder', 
 
         $scope.dtInstance = {};
 
-        // function renderDate(data) {
-        //     return $filter('date')(new Date(data), "dd MMM yyyy HH:mm:ss");
-        // }
-
         function getOnlyId(data, type, full, meta) {
             return '<button class="btn btn-default fa fa-video-camera" data-toggle="modal" data-target="#approve-live"  ng-click="approveUserLive(\'' + data + '\')">' +
-                '</button>'+
+                '</button>' +
                 '<button class="btn btn-default fa fa-info-circle" data-toggle="tooltip" title="Detail" ng-click="detailFestival(\'' + data + '\')">';
         }
 
@@ -37,6 +33,11 @@ app.controller('liveCtrl', ['$scope', '$rootScope', '$http', 'DTColumnBuilder', 
                 return '<span class="badge bg-yellow">Đã duyệt</span>';
             }
         }
+
+        $scope.detailFestival = function(festivalId) {
+            $state.go('home.festival.detail', { festivalId: festivalId });
+        }
+
 
         $scope.approveUserLive = function(festivalId) {
             $scope.getPending(festivalId);

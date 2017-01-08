@@ -57,28 +57,6 @@
                             </div>
                             <div class="col-md-6">
                                 <form role="form">
-                                    <div class="form-group">
-                                        <label>Thời gian bắt đầu</label>
-                                        <div class="form-group">
-                                            <div class='input-group date' id='datetimepicker1'>
-                                                <input id="timebegin" type='text' class="form-control" ng-model="timebegin" disabled/>
-                                                <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Thời gian kết thúc</label>
-                                        <div class="form-group">
-                                            <div class='input-group date' id='datetimepicker2'>
-                                                <input id="timeend" type='text' class="form-control" ng-model="timeend" disabled/>
-                                                <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="form-group ">
                                         <label>Giá</label>
                                         <input class="form-control " type="number " ng-model="priceTicket" disabled>
@@ -100,7 +78,7 @@
                                         <input class="form-control" ng-model="datecreated" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label>Hình ảnh bìa (1 hình)</label>
+                                        <label>Hình ảnh bìa</label>
                                         <div class="thumbnail-box">
                                             <div class="thumnail">
                                                 <img class="img-responsive" ng-show="myForm.file.$valid" ngf-thumbnail="thumbnail">
@@ -132,20 +110,38 @@
                             <input class="form-control" type="text" ng-model="nameEvent" disabled>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Thời gian bắt đầu</label>
-                            <div class='input-group date' id='datetimepicker3'>
-                                <input id="timebeginEvent" type='text' class="form-control" ng-model="timebeginEvent" disabled/>
+                            <label class="control-label">Ngày bắt đầu</label>
+                            <div class='input-group date' id='datetimepicker1'>
+                                <input id="datebeginEvent" type='text' class="form-control" ng-model="datebeginEvent" disabled/>
                                 <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Thời gian kết thúc</label>
-                            <div class='input-group date' id='datetimepicker4'>
-                                <input id="timeendEvent" type='text' class="form-control" ng-model="timeendEvent" disabled/>
+                            <label class="control-label">Thời gian bắt đầu</label>
+                            <div class='input-group date' id='datetimepicker2'>
+                                <input id="timebeginEvent" type='text' class="form-control" ng-model="timebeginEvent" disabled />
+                                <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ngày kết thúc</label>
+                            <div class='input-group date' id='datetimepicker3'>
+                                <input id="dateendEvent" type='text' class="form-control" ng-model="dateendEvent" disabled/>
                                 <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Thời gian bắt đầu</label>
+                            <div class='input-group date' id='datetimepicker4'>
+                                <input id="timeendEvent" type='text' class="form-control" ng-model="timeendEvent" disabled />
+                                <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
                                 </span>
                             </div>
                         </div>
