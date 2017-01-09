@@ -1,6 +1,7 @@
 'use strict';
 var app = angular.module('LehoivietAdmin', ['ui.router', 'datatables', 'chart.js',
-    'ngCookies', 'ngFileUpload', 'ui-notification', 'validation.match','ngProgress'
+    'ngCookies', 'ngFileUpload', 'ui-notification', 'validation.match', 
+    'ngProgress','LehoivietAdmin.directives'
 ]);
 
 
@@ -9,7 +10,7 @@ app.factory('ConfigService', [function() {
         //host: 'http://127.0.0.1:3000',
         host: 'https://api.lehoiviet.vn',
         hostImage: 'https://api.lehoiviet.vn'
-        //hostImage:'http://127.0.0.1:3000'
+        //hostImage: 'http://127.0.0.1:3000'
 
     };
 }]);
@@ -68,4 +69,20 @@ app.config(['$httpProvider', function($httpProvider) {
             }
         };
     });
+}]);
+
+angular.module('LehoivietAdmin.directives', [])
+    .directive('pwCheck', [function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, elem, attrs, ctrl) {
+            var firstPassword = '#' + attrs.pwCheck;
+            elem.add(firstPassword).on('keyup', function () {
+                scope.$apply(function () {
+                    // console.info(elem.val() === $(firstPassword).val());
+                    ctrl.$setValidity('pwmatch', elem.val() === $(firstPassword).val());
+                });
+            });
+        }
+    }
 }]);

@@ -8,7 +8,8 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
     }, function($transition$, $state, userService, $window, $location) {
         var roleID = angular.fromJson($window.localStorage.loggedUser).role;
         var url = $transition$.to().name;
-        var listAccessForRole3 = ['home.approve-live', 'login', 'home.profile.changepassword', 'forgotpassword', 'home.profile','home.festival.detail'];
+        var listAccessForRole3 = ['home.approve-live', 'login', 'home.profile.changepassword',
+         'forgotpassword', 'home.profile','home.festival.detail','resetpassword'];
         if (roleID === 3 && listAccessForRole3.indexOf(url) === -1) {
             return $state.go('login');
         }
@@ -33,6 +34,16 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider, $l
             views: {
                 'login@': {
                     templateUrl: 'public/app/components/logins/forgotpassword.html',
+                    controller: 'forgotpasswordCtrl'
+                }
+            },
+            requireAuthen: false
+        })
+        .state('resetpassword', {
+            url: '/resetpassword/:token',
+            views: {
+                'login@': {
+                    templateUrl: 'public/app/components/logins/resetpassword.html',
                     controller: 'forgotpasswordCtrl'
                 }
             },
