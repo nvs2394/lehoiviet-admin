@@ -1,0 +1,23 @@
+{
+  "name": "lehoiviet-admin",
+  "version": "1.0.0",
+  "description": "Start server ** node server.js",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nvs2394/lehoiviet-admin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nvs2394/lehoiviet-admin/issues"
+  },
+  "homepage": "https://github.com/nvs2394/lehoiviet-admin#readme",
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-connect": "^0.2.0"
+  }
+}
